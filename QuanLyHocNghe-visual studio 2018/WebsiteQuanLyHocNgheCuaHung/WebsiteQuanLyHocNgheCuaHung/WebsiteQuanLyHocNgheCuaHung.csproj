@@ -195,6 +195,8 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageRolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageUserRolesController.cs" />
+    <Compile Include="Areas\SinhVien\Controllers\SinhVienController.cs" />
+    <Compile Include="Areas\SinhVien\SinhVienAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HuanLuyenViensController.cs" />
@@ -294,6 +296,8 @@
     <Content Include="Areas\Admin\Views\ManageUserRoles\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\SinhVien\Views\web.config" />
+    <Content Include="Areas\SinhVien\Views\SinhVien\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -353,7 +357,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Account\" />
+    <Folder Include="Areas\SinhVien\Models\" />
+    <Folder Include="Areas\SinhVien\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
