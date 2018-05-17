@@ -1,0 +1,143 @@
+﻿
+@{
+    ViewBag.Title = "KiemTraTrucTuyenCSharp";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Kiểm định chất lượng</h3>
+<h1>
+    <b><text class="w3-text-deep-purple">ngôn ngữ lập trình C#</text></b>
+</h1>
+    @using (Html.BeginForm("KiemTraTrucTuyenCSharp", "SinhVien"))
+{
+<div class="w3-card-4 w3-dark-grey w3-padding " style="margin-right:60%;position:fixed">
+    <div>
+        <p>Thời gian bắt đầu: Hôm nay lúc @DateTime.Now</p>
+        <p>Số câu hỏi: 10.   Tổng điểm: 10</p>
+        <p>Thời gian làm bài: 5 phút.</p>
+        <p>  Thời gian còn lại:</p>
+        <p id='tiles' class="w3-xxxlarge w3-padding w3-center"></p>
+    </div>
+    <div class="w3-center">
+        <button class="w3-button w3-amber w3-center" type="submit">Nộp bài</button>
+    </div>
+</div>
+
+        <div class="w3-card-4 w3-dark-grey " style="margin-left:35%;padding:50px">
+            <div>
+                <p><b>Câu 1 :Một class có tối đa bao nhiêu property có tham số ?</b></p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau1", "sai" ,new {@class="w3-radio" })	0</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau1", "sai", new { @class = "w3-radio" })	1</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau1", "sai", new { @class = "w3-radio" })	2</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau1", "dung", new { @class = "w3-radio" })	vô số</p>
+            </div>
+        
+            <div>
+                <p><b>Câu 2 :Trong C#, một interface </b></p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau2", "sai", new { @class = "w3-radio" })	Có thể thừa kế từ một lớp.</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau2", "sai", new { @class = "w3-radio" })	Không thể thừa kế nhiều interface</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau2", "dung", new { @class = "w3-radio" })	Có thể thừa kế một interface</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau2", "sai", new { @class = "w3-radio" })	Có thể cài đặt cho phương thức.</p>
+            </div>
+            <div>
+                <p><b>Câu 3 :Lựa chọn phát biểu đúng. Trong C#:</b></p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau3", "sai", new { @class = "w3-radio" })	Một lớp có thể có nhiều lớp cha.</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau3", "dung", new { @class = "w3-radio" })	Một lớp chỉ có thể được kế thừa tối đa một lớp cha.</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau3", "sai", new { @class = "w3-radio" })	Có thể tạo một thể hiện của một Interface.</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau3", "sai", new { @class = "w3-radio" })	Có thể tạo thể hiện của một lớp ảo (abstract)</p>
+            </div>
+            <div>
+                <p><b>Câu 4 :Lựa chọn phát biểu sai. Trong C#</b></p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau4", "sai", new { @class = "w3-radio" })	Phạm vi truy xuất của các phương thức của Interface mặc định là Public.</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau4", "dung", new { @class = "w3-radio" })	Có thể đặt phạm vi truy xuất cho các phương thức của interface bằng từ khoá Private.</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau4", "sai", new { @class = "w3-radio" })	Một lớp khi implement tường minh một phương thức của interface thì phạm vi truy xuất của phương thức bắt buộc phải là public.</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau4", "sai", new { @class = "w3-radio" })	Một interface chỉ được khai báo tên phương thức chứ không được cài đặt phần thân của phương thức.</p>
+            </div>
+            <div>
+                <p><b>Câu 5 :Property có thể được khai báo trong?</b></p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau5", "sai", new { @class = "w3-radio" })	class</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau5", "sai", new { @class = "w3-radio" })	struct</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau5", "sai", new { @class = "w3-radio" })	Interface</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau5", "dung", new { @class = "w3-radio" })	Cả 3 đáp án trên</p>
+            </div>
+            <div>
+                <p><b>Câu 6 :Để khai báo một mảng 10 phần tử kiểu int, khai báo nào sau đây đùng</b></p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau6", "sai", new { @class = "w3-radio" })  int[10] arr;</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau6", "sai", new { @class = "w3-radio" })  int arr[10];</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau6", "sai", new { @class = "w3-radio" })  int arr[] = new int [10];</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau6", "dung", new { @class = "w3-radio" })	int[] arr = new int[10];</p>
+            </div>
+            <div>
+                <p><b>Câu 7 :Trong C#, Để xuất một chuỗi ra màn hình và đưa con trỏ màn hình xuống dòng dưới ta dùng phương thức nào của lớp System.Console</b></p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau7", "sai", new { @class = "w3-radio" })	Read</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau7", "sai", new { @class = "w3-radio" })	ReadLine</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau7", "sai", new { @class = "w3-radio" })	Write</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau7", "dung", new { @class = "w3-radio" })	WriteLine</p>
+            </div>
+            <div>
+                <p><b>Câu 8 :Mỗi khối try/ catch có tối đa bao nhiêu finaly</b></p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau8", "dung", new { @class = "w3-radio" })	1</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau8", "sai", new { @class = "w3-radio" })	2</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau8", "sai", new { @class = "w3-radio" })	3</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau8", "sai", new { @class = "w3-radio" })	vô số</p>
+            </div>
+            <div>
+                <p><b>Câu 9 :Trong C#, cấu trúc nào sau đây được dùng để bắt và xử lý các ngoại lệ</b></p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau9", "sai", new { @class = "w3-radio" })	if/else</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau9", "dung", new { @class = "w3-radio" })	Try/Catch</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau9", "sai", new { @class = "w3-radio" })	Catch/Finaly</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau9", "sai", new { @class = "w3-radio" })	do/loop</p>
+            </div>
+            <div>
+                <p><b>Câu 10 :Lớp Test được cài đặt như bên dưới, câu lệnh nào sau đây hợp lệ:</b></p>
+                <pre>
+                <text class="w3-text-blue">class</text> <text class="w3-text-teal">Test</text>
+                {
+                    <text class="w3-text-blue">public static int</text> mark;
+                    <text class="w3-text-blue">public static void</text> Print() { }
+                }
+        </pre>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau10", "sai", new { @class = "w3-radio" })	Test t = new Test(); t.mark = 9;</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau10", "sai", new { @class = "w3-radio" })	Test t = new Test(); t.Print();</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau10", "sai", new { @class = "w3-radio" })	Test.mark = 9;</p>
+                <p class="w3-hover-text-blue"  style="padding-left:50px">@Html.RadioButton("Cau10", "dung", new { @class = "w3-radio" })	Test.Print(9);</p>
+            </div>
+
+    </div>
+}
+
+<script>
+    var target_date = new Date().getTime() + (3000 * 100); // set the countdown date
+    var days, hours, minutes, seconds; // variables for time units
+
+    var countdown = document.getElementById("tiles"); // get tag element
+
+    getCountdown();
+
+    setInterval(function () { getCountdown(); }, 1000);
+
+    function getCountdown() {
+
+        // find the amount of "seconds" between now and target
+        var current_date = new Date().getTime();
+        var seconds_left = (target_date - current_date) / 1000;
+
+        days = pad(parseInt(seconds_left / 86400));
+        seconds_left = seconds_left % 86400;
+
+        hours = pad(parseInt(seconds_left / 3600));
+        seconds_left = seconds_left % 3600;
+
+        minutes = pad(parseInt(seconds_left / 60));
+        seconds = pad(parseInt(seconds_left % 60));
+
+        // format countdown string + set tag value
+        countdown.innerHTML = minutes + ":" + seconds;
+    }
+
+    function pad(n) {
+        return (n < 10 ? '0' : '') + n;
+    }
+
+
+</script>

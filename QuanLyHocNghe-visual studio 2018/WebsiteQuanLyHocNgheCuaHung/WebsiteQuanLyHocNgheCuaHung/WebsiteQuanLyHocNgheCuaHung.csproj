@@ -195,13 +195,13 @@
     <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageRolesController.cs" />
     <Compile Include="Areas\Admin\Controllers\ManageUserRolesController.cs" />
+    <Compile Include="Areas\HuanLuyenVien\Controllers\HuanLuyenVienController.cs" />
+    <Compile Include="Areas\HuanLuyenVien\HuanLuyenVienAreaRegistration.cs" />
     <Compile Include="Areas\SinhVien\Controllers\SinhVienController.cs" />
     <Compile Include="Areas\SinhVien\SinhVienAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\HuanLuyenViensController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\SinhViensController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -257,8 +257,11 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\image\avatar3.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\image\coachbanner.png" />
+    <Content Include="Content\image\studentbanner.png" />
     <Content Include="Content\w3.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -298,6 +301,15 @@
     <Content Include="Areas\Admin\Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Areas\SinhVien\Views\web.config" />
     <Content Include="Areas\SinhVien\Views\SinhVien\Index.cshtml" />
+    <Content Include="Areas\HuanLuyenVien\Views\web.config" />
+    <Content Include="Areas\HuanLuyenVien\Views\HuanLuyenVien\Index.cshtml" />
+    <Content Include="Areas\SinhVien\Views\SinhVien\KiemTraTrucTuyenCSharp.cshtml" />
+    <Content Include="Areas\SinhVien\Views\SinhVien\KiemTraTrucTuyenJavaScript.cshtml" />
+    <Content Include="Areas\SinhVien\Views\SinhViens\Create.cshtml" />
+    <Content Include="Areas\SinhVien\Views\SinhViens\Delete.cshtml" />
+    <Content Include="Areas\SinhVien\Views\SinhViens\Details.cshtml" />
+    <Content Include="Areas\SinhVien\Views\SinhViens\Edit.cshtml" />
+    <Content Include="Areas\SinhVien\Views\SinhViens\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -342,21 +354,19 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Home\DangKySinhVien.cshtml" />
-    <Content Include="Views\HuanLuyenViens\Create.cshtml" />
-    <Content Include="Views\HuanLuyenViens\Delete.cshtml" />
-    <Content Include="Views\HuanLuyenViens\Details.cshtml" />
-    <Content Include="Views\HuanLuyenViens\Edit.cshtml" />
-    <Content Include="Views\HuanLuyenViens\Index.cshtml" />
     <Content Include="Views\Home\DangKyHuanLuyenVien.cshtml" />
     <Content Include="Views\SinhViens\Create.cshtml" />
     <Content Include="Views\SinhViens\Delete.cshtml" />
     <Content Include="Views\SinhViens\Details.cshtml" />
     <Content Include="Views\SinhViens\Edit.cshtml" />
     <Content Include="Views\SinhViens\Index.cshtml" />
+    <Content Include="Views\Home\EditSinhVien.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\HuanLuyenVien\Models\" />
+    <Folder Include="Areas\HuanLuyenVien\Views\Shared\" />
     <Folder Include="Areas\SinhVien\Models\" />
     <Folder Include="Areas\SinhVien\Views\Shared\" />
   </ItemGroup>

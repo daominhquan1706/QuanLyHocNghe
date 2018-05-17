@@ -1,8 +1,56 @@
-﻿
+﻿@using WebsiteQuanLyHocNgheCuaHung.Models
+@using Microsoft.AspNet.Identity
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    Entities db = new Entities();
+    string idsinhvien = User.Identity.GetUserId().ToString();
+    var dbSinhVien = db.SinhViens.Single(t => t.IDSinhVien.Equals(idsinhvien));
 }
 
-<h2>Index</h2>
+<header class="w3-display-container w3-wide w3-text-deep-purple" id="home">
+    <img class="w3-image" src="~/Content/image/studentbanner.png" alt="Student's Banner" width="1600" height="1060">
+    <div class="w3-display-left w3-padding-large">
+        <h1 class="w3-text-white">Xin chào</h1>
+        <h1 class="w3-jumbo w3-hide-small"><b>Thực Tập Sinh</b></h1>
+        <h6><a class="w3-button w3-deep-purple w3-padding-large w3-large" href="@Url.Action("EditSinhVien","Home",new { Area="", id=User.Identity.GetUserId() })">SỬA THÔNG TIN CÁ NHÂN &raquo;</a></h6>
+        @if (dbSinhVien.DiemThiTracNghiem == null)
+            {
+                if (dbSinhVien.NgonNguLapTrinh == "C#")
+                {
+                    <a class="w3-button w3-blue w3-padding-large w3-large" href="@Url.Action("KiemTraTrucTuyenCSharp","SinhVien")">
+                        Kiểm Tra Trực Tuyến C#
+                    </a>
+                }
+                if (dbSinhVien.NgonNguLapTrinh == "Java script")
+                {
+                    <a class="w3-button w3-blue w3-padding-large w3-large" href="@Url.Action("KiemTraTrucTuyenJavaScript","SinhVien")">
+                        Kiểm Tra Trực Tuyến Java Script
+                    </a>
+                }
+            }
+    </div>
+</header>
+    <div class="w3-container w3-card w3-round w3-white">
+        <div class="w3-container">
+            <h4 class="w3-center">@dbSinhVien.HoTen</h4>
+            <p class="w3-center"><img src="~/Content/image/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+            <hr>
+            <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> 15dh1000<text>@dbSinhVien.MSSV</text></p>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> @dbSinhVien.DiaChi</p>
+            <p><i class="fa fa-code w3-margin-right w3-text-theme"></i> @dbSinhVien.NgonNguLapTrinh</p>
+            <p><i class="fa fa-graduation-cap w3-margin-right w3-text-theme"></i> @dbSinhVien.TrinhDoHocVan</p>
+            <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> @dbSinhVien.NgaySinh.Day/@dbSinhVien.NgaySinh.Month/@dbSinhVien.NgaySinh.Year</p>
+            @if(dbSinhVien.DiemThiTracNghiem!=null)
+            {
+                <p><i class="fa fa-file-text-o fa-fw w3-margin-right w3-text-theme"></i> <text class="w3-hover-text-blue">Kiểm thử đạt <text>@dbSinhVien.DiemThiTracNghiem</text>đ</text></p>
+            }
+            else
+            {
+                <p><i class="fa fa-file-text-o fa-fw w3-margin-right w3-text-theme"></i>Chưa thi</p>
+            }
+            <p><i class="fa fa-handshake-o fa-fw w3-margin-right w3-text-theme"></i> <text class="w3-hover-text-deep-purple">HLV @dbSinhVien.TinhTrangSinhVien</text></p>
+        </div>
+    </div>
+
 
