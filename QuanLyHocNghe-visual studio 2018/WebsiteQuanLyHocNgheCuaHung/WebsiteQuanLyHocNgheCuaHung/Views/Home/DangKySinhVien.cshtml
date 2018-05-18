@@ -8,7 +8,7 @@
     Entities db = new Entities();
     var username = User.Identity.GetUserName();
     List<string> listHoTenHLV = new List<string>();
-    listHoTenHLV.Add("Chưa có giảng viên");
+    listHoTenHLV.Add("để trống");
     foreach (var item in db.HuanLuyenViens)
     {
         listHoTenHLV.Add(item.HoTen);

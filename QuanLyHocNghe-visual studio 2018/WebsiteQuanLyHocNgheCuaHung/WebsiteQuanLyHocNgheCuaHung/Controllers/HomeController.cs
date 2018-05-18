@@ -160,7 +160,6 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
             {
                 return HttpNotFound();
             }
-            ViewData["id"] = id;
             return View(sinhVien);
         }
 

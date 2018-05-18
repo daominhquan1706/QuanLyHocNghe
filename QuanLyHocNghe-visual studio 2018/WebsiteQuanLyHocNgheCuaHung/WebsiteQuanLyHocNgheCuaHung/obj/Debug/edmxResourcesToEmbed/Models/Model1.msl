@@ -101,6 +101,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="HopDongs">
+      <EntityTypeMapping TypeName="Model.HopDong">
+        <MappingFragment StoreEntitySet="HopDong">
+          <ScalarProperty Name="IDSinhVien" ColumnName="IDSinhVien" />
+          <ScalarProperty Name="IDHuanLuyenVien" ColumnName="IDHuanLuyenVien" />
+          <ScalarProperty Name="NgayTaoHopDong" ColumnName="NgayTaoHopDong" />
+          <ScalarProperty Name="NgayKetThucHopDong" ColumnName="NgayKetThucHopDong" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
       <EndProperty Name="AspNetRoles">
         <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -109,26 +119,5 @@
         <ScalarProperty Name="Id" ColumnName="UserId" />
       </EndProperty>
     </AssociationSetMapping>
-    <EntitySetMapping Name="ChatBoxes">
-      <EntityTypeMapping TypeName="Model.ChatBox">
-        <MappingFragment StoreEntitySet="ChatBox">
-          <ScalarProperty Name="UserID_Nhan" ColumnName="UserID_Nhan" />
-          <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
-          <ScalarProperty Name="TinNhan" ColumnName="TinNhan" />
-          <ScalarProperty Name="UserID_Gui" ColumnName="UserID_Gui" />
-          <ScalarProperty Name="Id" ColumnName="Id" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="HopDongs">
-      <EntityTypeMapping TypeName="Model.HopDong">
-        <MappingFragment StoreEntitySet="HopDong">
-          <ScalarProperty Name="NgayKetThucHopDong" ColumnName="NgayKetThucHopDong" />
-          <ScalarProperty Name="NgayTaoHopDong" ColumnName="NgayTaoHopDong" />
-          <ScalarProperty Name="IDHuanLuyenVien" ColumnName="IDHuanLuyenVien" />
-          <ScalarProperty Name="IDSinhVien" ColumnName="IDSinhVien" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

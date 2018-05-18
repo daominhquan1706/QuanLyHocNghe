@@ -105,18 +105,6 @@ namespace WebsiteQuanLyHocNgheCuaHung.Areas.SinhVien.Controllers
             }
             return RedirectToAction("Index");
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult ChatVoiHLV([Bind(Include = "Id,UserID_Gui,TinNhan,ThoiGian,UserID_Nhan")] ChatBox chatBox)
-        {
-            if (ModelState.IsValid)
-            {
-                db.ChatBoxes.Add(chatBox);
-                db.SaveChanges();
-                return RedirectToAction("Index", "SinhVien");
-            }
-            return RedirectToAction("Index", "SinhVien");
-        }
-
+        
     }
 }

@@ -34,7 +34,6 @@ namespace WebsiteQuanLyHocNgheCuaHung.Models
         public virtual DbSet<ChungChiSinhVien> ChungChiSinhViens { get; set; }
         public virtual DbSet<HuanLuyenVien> HuanLuyenViens { get; set; }
         public virtual DbSet<SinhVien> SinhViens { get; set; }
-        public virtual DbSet<ChatBox> ChatBoxes { get; set; }
         public virtual DbSet<HopDong> HopDongs { get; set; }
     }
 }

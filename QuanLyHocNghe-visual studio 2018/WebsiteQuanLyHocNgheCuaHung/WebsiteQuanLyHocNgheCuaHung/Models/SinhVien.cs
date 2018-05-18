@@ -18,6 +18,7 @@ namespace WebsiteQuanLyHocNgheCuaHung.Models
         public SinhVien()
         {
             this.ChungChiSinhViens = new HashSet<ChungChiSinhVien>();
+            this.HopDongs = new HashSet<HopDong>();
         }
     
         public string IDSinhVien { get; set; }
@@ -34,6 +35,7 @@ namespace WebsiteQuanLyHocNgheCuaHung.Models
         public virtual AspNetUser AspNetUser { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ChungChiSinhVien> ChungChiSinhViens { get; set; }
-        public virtual HopDong HopDong { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HopDong> HopDongs { get; set; }
     }
 }

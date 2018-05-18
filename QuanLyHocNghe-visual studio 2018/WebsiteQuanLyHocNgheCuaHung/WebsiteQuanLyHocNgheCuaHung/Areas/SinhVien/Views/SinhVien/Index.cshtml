@@ -4,34 +4,14 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     Entities db = new Entities();
-
     string idsinhvien = User.Identity.GetUserId().ToString();
     var dbSinhVien = db.SinhViens.Single(t => t.IDSinhVien.Equals(idsinhvien));
-    
-    string TenHLV = dbSinhVien.TinhTrangSinhVien.ToString();
-    if(TenHLV != "")
-    {
-        TenHLV = "Phạm Văn Trung";
-    }
-    var listchatboxes = db.ChatBoxes.ToList();
-    string time = DateTime.Now.ToString();
-    var dbHuanLuyenVien = db.HuanLuyenViens.Single(t => t.HoTen.Equals(TenHLV));
-    string idusername = User.Identity.GetUserId().ToString();
-    
 }
-<link rel="stylesheet" href="~/Content/adminlte.min.css">
-<style>
-    body {
-        font: normal 13px/20px Arial, Helvetica, sans-serif;
-        word-wrap: break-word;
-        color: #eee;
-        background: #353535;
-    }
-</style>
-<header class="w3-display-container w3-wide w3-padding w3-margin-bottom" id="home">
+
+<header class="w3-display-container w3-wide w3-text-deep-purple" id="home">
     <img class="w3-image" src="~/Content/image/studentbanner.png" alt="Student's Banner" width="1600" height="1060">
     <div class="w3-display-left w3-padding-large">
-        <h1 class="w3-text-white">Trang Chủ</h1>
+        <h1 class="w3-text-white">Xin chào</h1>
         <h1 class="w3-jumbo w3-hide-small"><b>Thực Tập Sinh</b></h1>
         <h6><a class="w3-button w3-deep-purple w3-padding-large w3-large" href="@Url.Action("EditSinhVien","Home",new { Area="", id=User.Identity.GetUserId() })">SỬA THÔNG TIN CÁ NHÂN &raquo;</a></h6>
         @if (dbSinhVien.DiemThiTracNghiem == null)
@@ -51,140 +31,26 @@
             }
     </div>
 </header>
-<div class="w3-row-padding">
-
-    <div class="w3-half">
-        <div class="w3-container w3-card-4 w3-white ">
-            <div class="w3-container" style="height:450px">
-
-                <h4 class="w3-center">@dbSinhVien.HoTen</h4>
-                <p class="w3-center"><img src="~/Content/image/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
-                <hr>
-                <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> 15dh1000<text>@dbSinhVien.MSSV</text></p>
-                <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> @dbSinhVien.DiaChi</p>
-                <p><i class="fa fa-code w3-margin-right w3-text-theme"></i> @dbSinhVien.NgonNguLapTrinh</p>
-                <p><i class="fa fa-graduation-cap w3-margin-right w3-text-theme"></i> @dbSinhVien.TrinhDoHocVan</p>
-                <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> @dbSinhVien.NgaySinh.Day/@dbSinhVien.NgaySinh.Month/@dbSinhVien.NgaySinh.Year</p>
-                @if (dbSinhVien.DiemThiTracNghiem != null)
-                {
-                    <p><i class="fa fa-file-text-o fa-fw w3-margin-right w3-text-theme"></i> <text class="w3-hover-text-blue">Kiểm thử đạt <text>@dbSinhVien.DiemThiTracNghiem</text>đ</text></p>
-                }
-                else
-                {
-                    <p><i class="fa fa-file-text-o fa-fw w3-margin-right w3-text-theme"></i>Chưa kiểm tra</p>
-                }
-                @if(dbSinhVien.TinhTrangSinhVien=="Đã Ký Hợp Đồng")
-                {
-                <p><i class="fa fa-handshake-o fa-fw w3-margin-right w3-text-theme"></i> <text class="w3-hover-text-deep-purple">@dbSinhVien.TinhTrangSinhVien</text></p>
-                }
-            </div>
+    <div class="w3-container w3-card w3-round w3-white">
+        <div class="w3-container">
+            <h4 class="w3-center">@dbSinhVien.HoTen</h4>
+            <p class="w3-center"><img src="~/Content/image/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+            <hr>
+            <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> 15dh1000<text>@dbSinhVien.MSSV</text></p>
+            <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> @dbSinhVien.DiaChi</p>
+            <p><i class="fa fa-code w3-margin-right w3-text-theme"></i> @dbSinhVien.NgonNguLapTrinh</p>
+            <p><i class="fa fa-graduation-cap w3-margin-right w3-text-theme"></i> @dbSinhVien.TrinhDoHocVan</p>
+            <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> @dbSinhVien.NgaySinh.Day/@dbSinhVien.NgaySinh.Month/@dbSinhVien.NgaySinh.Year</p>
+            @if(dbSinhVien.DiemThiTracNghiem!=null)
+            {
+                <p><i class="fa fa-file-text-o fa-fw w3-margin-right w3-text-theme"></i> <text class="w3-hover-text-blue">Kiểm thử đạt <text>@dbSinhVien.DiemThiTracNghiem</text>đ</text></p>
+            }
+            else
+            {
+                <p><i class="fa fa-file-text-o fa-fw w3-margin-right w3-text-theme"></i>Chưa thi</p>
+            }
+            <p><i class="fa fa-handshake-o fa-fw w3-margin-right w3-text-theme"></i> <text class="w3-hover-text-deep-purple">HLV @dbSinhVien.TinhTrangSinhVien</text></p>
         </div>
     </div>
-    
-    <div class="w3-half">
-        <!--CHAT BOX-->
-        @if (Request.IsAuthenticated && dbSinhVien.TinhTrangSinhVien == "Đã Ký Hợp Đồng")
-        {
-            var dbhopdong = db.HopDongs.Single(r => r.IDSinhVien.Equals(idusername));
-            <div class="w3-card-4">
-                <!-- DIRECT CHAT PRIMARY -->
-                <div class="card card-primary direct-chat direct-chat-primary demo" style="height:450px">
-                    <div class="card-header w3-blue">
-                        <h3 class="card-title" id="demo">Nhắn tin với HLV @dbhopdong.HuanLuyenVien.HoTen</h3>
-                        <div class="card-tools">
-                            @*<span data-toggle="tooltip" title="3 New Messages" class="badge bg-danger ">3</span>*@
-                            <button type="button" class="btn btn-tool w3-deep-purple" data-widget="collapse">
-                                <i class="fa fa-minus"></i>
-                            </button>
-                            @*<button type="button" class="btn btn-tool w3-blue" data-toggle="tooltip" title="Contacts"
-                                        data-widget="chat-pane-toggle">
-                                    <i class="fa fa-comments"></i>
-                                </button>*@
-                            <button type="button" class="btn btn-tool w3-pink" data-widget="remove">
-                                <i class="fa fa-times"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body">
-                        <!-- Conversations are loaded here -->
-                        <div class="direct-chat-messages" id="yourdiv">
-                            @foreach (var item in listchatboxes)
-                            {
-                                
-                                if (item.UserID_Gui == dbhopdong.IDHuanLuyenVien && item.UserID_Nhan == dbhopdong.IDSinhVien)
-                                {
-
-                                    <!-- LEFT  -->
-                                    <div class="direct-chat-msg">
-                                        <div class="direct-chat-info clearfix">
-                                            <span class="direct-chat-name float-left">Quản trị viên</span>
-                                            <span class="direct-chat-timestamp float-right">@item.ThoiGian</span>
-                                        </div>
-                                        <!-- /.direct-chat-info -->
-                                        <img class="direct-chat-img" src="~/Content/image/avatargiangvien.png" alt="Message User Image">
-                                        <!-- /.direct-chat-img -->
-                                        <div class="direct-chat-text">
-                                            @item.TinNhan
-                                        </div>
-                                        <!-- /.direct-chat-text -->
-                                    </div>
-                                    <!-- /.direct-chat-msg -->
-                                }
-                                if (item.UserID_Gui == idusername && item.UserID_Nhan == dbhopdong.IDHuanLuyenVien)
-                                {
-                                    <!-- RIGHT-->
-                                    <div class="direct-chat-msg right">
-                                        <div class="direct-chat-info clearfix">
-                                            <span class="direct-chat-name float-right">@User.Identity.GetUserName()</span>
-                                            <span class="direct-chat-timestamp float-left">@item.ThoiGian</span>
-                                        </div>
-                                        <!-- /.direct-chat-info -->
-                                        <img class="direct-chat-img" src="~/Content/image/avatar3.png" alt="Message User Image">
-                                        <!-- /.direct-chat-img -->
-                                        <div class="direct-chat-text ">
-                                            @item.TinNhan
-                                        </div>
-                                        <!-- /.direct-chat-text -->
-                                    </div>
-                                    <!-- /.direct-chat-msg -->
-                                }
 
 
-                            }
-
-
-                        </div>
-                        <!--/.direct-chat-messages-->
-                    </div>
-                    @using (Html.BeginForm("ChatVoiHLV", "SinhVien"))
-                    {
-                        @Html.AntiForgeryToken()
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <div class="input-group w3-animate-input">
-
-                                <!-- w3-hide -->
-                                <input type="text" name="ThoiGian" value="@time" class="form-control w3-hide">
-                                <input type="text" name="UserID_Gui" value="@dbhopdong.IDSinhVien" class="form-control w3-hide">
-                                <input type="text" name="UserID_Nhan" value="@dbhopdong.IDHuanLuyenVien" id="idnguoinhan" class="form-control w3-hide">
-                                <!--end w3-hide -->
-                                <textarea type="text" name="TinNhan" placeholder="Type Message ..." class="form-control" style="max-width:none" required></textarea>
-                                <span class="input-group-append" style="">
-                                    <button type="submit" class="w3-button w3-blue">Send</button>
-                                </span>
-
-                            </div>
-                        </div>
-                        <!-- /.card-footer-->
-                    }
-
-
-                </div>
-                <!--/.direct-chat -->
-            </div>
-        }
-    </div>
-
-
-</div>

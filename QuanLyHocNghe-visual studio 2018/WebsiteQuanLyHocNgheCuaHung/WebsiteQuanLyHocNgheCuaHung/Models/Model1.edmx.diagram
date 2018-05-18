@@ -14,19 +14,16 @@
         <EntityTypeShape EntityType="Model.ChungChiSinhVien" Width="1.5" PointX="7.5" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.HuanLuyenVien" Width="1.5" PointX="5.25" PointY="6.625" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.SinhVien" Width="1.5" PointX="5.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.HopDong" Width="1.5" PointX="7.5" PointY="8.75" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_HuanLuyenVien_AspNetUsers" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_SinhVien_AspNetUsers" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_ChungChiSinhVien_ChungChi" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_ChungChiSinhVien_SinhVien" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_HopDong_HuanLuyenVien" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_HopDong_SinhVien" ManuallyRouted="false" />
         <AssociationConnector Association="Model.AspNetUserRoles" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="Model.ChatBox" Width="1.5" PointX="5.25" PointY="17.125" />
-        <AssociationConnector Association="Model.FK_ChatBox_SoTietKiem" />
-        <AssociationConnector Association="Model.FK_ChatBox_SoTietKiem1" />
-        <EntityTypeShape EntityType="Model.HopDong" Width="1.5" PointX="7.5" PointY="8.75" />
-        <AssociationConnector Association="Model.FK_HopDong_HuanLuyenVien" />
-        <AssociationConnector Association="Model.FK_HopDong_SinhVien" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
