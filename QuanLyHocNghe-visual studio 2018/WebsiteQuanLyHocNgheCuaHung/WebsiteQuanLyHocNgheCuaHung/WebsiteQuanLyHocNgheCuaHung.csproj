@@ -200,8 +200,13 @@
     <Compile Include="Areas\SinhVien\Controllers\SinhVienController.cs" />
     <Compile Include="Areas\SinhVien\SinhVienAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChungChisController.cs" />
+    <Compile Include="Controllers\ChungChiSinhViensController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HopDongsController.cs" />
+    <Compile Include="Controllers\HuanLuyenViensController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SinhViensController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,6 +221,9 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AspNetUserLogin.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ChatBox.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ChungChi.cs">
@@ -257,11 +265,34 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\adminlte.min.css" />
+    <Content Include="Content\adminlte.min.js" />
+    <Content Include="Content\bootstrap.bundle.min.js" />
+    <Content Include="Content\demo.js" />
+    <Content Include="Content\image\avatargiangvien.png" />
     <Content Include="Content\image\avatar3.png" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\image\coachbanner.png" />
+    <Content Include="Content\image\dist\css\adminlte.min.css" />
+    <Content Include="Content\image\dist\js\adminlte.min.js" />
+    <Content Include="Content\image\dist\js\demo.js" />
+    <Content Include="Content\image\plugins\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="Content\image\plugins\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="Content\image\plugins\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="Content\image\plugins\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\image\plugins\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\image\plugins\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\image\plugins\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\image\plugins\datatables\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\image\plugins\datatables\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\image\plugins\datatables\jquery.dataTables.min.js" />
+    <Content Include="Content\image\plugins\fastclick\fastclick.js" />
+    <Content Include="Content\image\plugins\jquery\jquery.min.js" />
+    <Content Include="Content\image\plugins\slimScroll\jquery.slimscroll.min.js" />
+    <Content Include="Content\image\searchicon.png" />
     <Content Include="Content\image\studentbanner.png" />
+    <Content Include="Content\jquery.min.js" />
     <Content Include="Content\w3.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -310,6 +341,15 @@
     <Content Include="Areas\SinhVien\Views\SinhViens\Details.cshtml" />
     <Content Include="Areas\SinhVien\Views\SinhViens\Edit.cshtml" />
     <Content Include="Areas\SinhVien\Views\SinhViens\Index.cshtml" />
+    <Content Include="Content\image\plugins\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="Content\image\plugins\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\image\plugins\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\image\plugins\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\image\plugins\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\image\plugins\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Areas\HuanLuyenVien\Views\HuanLuyenVien\XemSinhVien.cshtml" />
+    <Content Include="Areas\HuanLuyenVien\Views\HuanLuyenVien\ChonSinhVienChatBox.cshtml" />
+    <Content Include="Areas\HuanLuyenVien\Views\HuanLuyenVien\ChiTietSinhVien.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -361,6 +401,25 @@
     <Content Include="Views\SinhViens\Edit.cshtml" />
     <Content Include="Views\SinhViens\Index.cshtml" />
     <Content Include="Views\Home\EditSinhVien.cshtml" />
+    <Content Include="Views\HopDongs\Create.cshtml" />
+    <Content Include="Views\HopDongs\Delete.cshtml" />
+    <Content Include="Views\HopDongs\Details.cshtml" />
+    <Content Include="Views\HopDongs\Index.cshtml" />
+    <Content Include="Views\ChungChis\Create.cshtml" />
+    <Content Include="Views\ChungChis\Delete.cshtml" />
+    <Content Include="Views\ChungChis\Details.cshtml" />
+    <Content Include="Views\ChungChis\Edit.cshtml" />
+    <Content Include="Views\ChungChis\Index.cshtml" />
+    <Content Include="Views\HuanLuyenViens\Create.cshtml" />
+    <Content Include="Views\HuanLuyenViens\Delete.cshtml" />
+    <Content Include="Views\HuanLuyenViens\Details.cshtml" />
+    <Content Include="Views\HuanLuyenViens\Edit.cshtml" />
+    <Content Include="Views\HuanLuyenViens\Index.cshtml" />
+    <Content Include="Views\ChungChiSinhViens\Create.cshtml" />
+    <Content Include="Views\ChungChiSinhViens\Delete.cshtml" />
+    <Content Include="Views\ChungChiSinhViens\Details.cshtml" />
+    <Content Include="Views\ChungChiSinhViens\Edit.cshtml" />
+    <Content Include="Views\ChungChiSinhViens\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

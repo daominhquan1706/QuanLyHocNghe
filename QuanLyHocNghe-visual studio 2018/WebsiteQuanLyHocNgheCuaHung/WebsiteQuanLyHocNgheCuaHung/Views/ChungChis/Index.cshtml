@@ -1,0 +1,34 @@
+﻿@model IEnumerable<WebsiteQuanLyHocNgheCuaHung.Models.ChungChi>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="container">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TenChungChi)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TenChungChi)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MaChungChi }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MaChungChi }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaChungChi })
+        </td>
+    </tr>
+}
+
+</table>
