@@ -4,19 +4,60 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebsiteQuanLyHocNgheCuaHung.Models;
+using Microsoft.AspNet.Identity;
+using System.Net;
+using System.Data.Entity;
 
 namespace WebsiteQuanLyHocNgheCuaHung.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         Entities db = new Entities();
+        
         public ActionResult Index()
         {
+            string userid = User.Identity.GetUserId();
+            foreach (var item in db.SinhViens)
+            {
+                if(item.IDSinhVien == userid)
+                {
+                    return RedirectToAction("Index", "SinhVien");
+                }
+            }
+            foreach (var item in db.HuanLuyenViens)
+            {
+                if (item.IDHuanLuyenVien == userid)
+                {
+                    return RedirectToAction("Index", "HuanLuyenVien");
+                }
+            }
+            if (User.Identity.GetUserName()=="admin@gmail.com")
+            {
+                return RedirectToAction("Index", "Admin");
+            }
             return View();
         }
 
         public ActionResult DangKySinhVien(string Username)
         {
+            // chuyển user về đúng trang theo role , tránh lỗi
+            string userid = User.Identity.GetUserId();
+            foreach (var item in db.SinhViens)
+            {
+                if (item.IDSinhVien == userid)
+                {
+                    return RedirectToAction("Index", "SinhVien");
+                }
+            }
+            foreach (var item in db.HuanLuyenViens)
+            {
+                if (item.IDHuanLuyenVien == userid)
+                {
+                    return RedirectToAction("Index", "HuanLuyenVien");
+                }
+            }
+
             var listuser = db.SinhViens.ToList();
             var id = db.AspNetUsers.Single(f => f.UserName.Equals(Username)).Id;
             if(listuser!=null)
@@ -37,6 +78,21 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
         {
             if (ModelState.IsValid)
             {
+                string userid = User.Identity.GetUserId();
+                foreach (var item in db.SinhViens)
+                {
+                    if (item.IDSinhVien == userid)
+                    {
+                        return RedirectToAction("Index", "SinhVien");
+                    }
+                }
+                foreach (var item in db.HuanLuyenViens)
+                {
+                    if (item.IDHuanLuyenVien == userid)
+                    {
+                        return RedirectToAction("Index", "HuanLuyenVien");
+                    }
+                }
                 db.SinhViens.Add(sinhVien);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -45,6 +101,21 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
         }
         public ActionResult DangKyHuanLuyenVien(string Username)
         {
+            string userid = User.Identity.GetUserId();
+            foreach (var item in db.SinhViens)
+            {
+                if (item.IDSinhVien == userid)
+                {
+                    return RedirectToAction("Index", "SinhVien");
+                }
+            }
+            foreach (var item in db.HuanLuyenViens)
+            {
+                if (item.IDHuanLuyenVien == userid)
+                {
+                    return RedirectToAction("Index", "HuanLuyenVien");
+                }
+            }
             var listuser = db.HuanLuyenViens.ToList();
             var id = db.AspNetUsers.Single(f => f.UserName.Equals(Username)).Id;
             if (listuser != null)
@@ -65,11 +136,49 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
         {
             if (ModelState.IsValid)
             {
+                foreach (var item in db.HuanLuyenViens)
+                {
+                    if (item.IDHuanLuyenVien == huanLuyenVien.IDHuanLuyenVien)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
                 db.HuanLuyenViens.Add(huanLuyenVien);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(huanLuyenVien);
         }
+        public ActionResult EditSinhVien(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SinhVien sinhVien = db.SinhViens.Find(id);
+            if (sinhVien == null)
+            {
+                return HttpNotFound();
+            }
+            return View(sinhVien);
+        }
+
+        // POST: SinhViens/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditSinhVien([Bind(Include = "IDSinhVien,MSSV,HoTen,DiaChi,NgonNguLapTrinh,NgaySinh,TrinhDoHocVan,DiemTOEFL,TinhTrangSinhVien,DiemThiTracNghiem")] SinhVien sinhVien)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(sinhVien).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index","SinhVien",new {Area="SinhVien" });
+            }
+            ViewBag.IDSinhVien = new SelectList(db.AspNetUsers, "Id", "Email", sinhVien.IDSinhVien);
+            return View(sinhVien);
+        }
+
     }
 }

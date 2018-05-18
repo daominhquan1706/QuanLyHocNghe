@@ -11,69 +11,29 @@
     {
         Response.Redirect("/Account/Login");
     }
-    var listuser = db.AspNetUsers.ToList();
-    var username = "daominhquan176@gmail.com";
-    if (Request.IsAuthenticated)
-    {
-        username = User.Identity.GetUserName();
-    }
-    var idusername = listuser.Single(t => t.Email.Equals(username)).Id;
-
-    bool banlasinhvien = false;
-    bool banlahuanluyenvien = false;
-    //kiểm tra bạn có phải là sinh viên hay không
-    var listsinhvien = db.SinhViens.ToList();
-    if (listsinhvien.Count != 0)
-    {
-        foreach(var item in listsinhvien)
-        {
-            if(item.IDSinhVien == idusername)
-            {
-                banlasinhvien = true;
-            }
-        }
-    }
-    //kiểm tra bạn có phải là huấn luyện viên hay không
-    var listhuanluyenvien = db.HuanLuyenViens.ToList();
-    if (listhuanluyenvien.Count != 0)
-    {
-        foreach (var item in listhuanluyenvien)
-        {
-            if (item.IDHuanLuyenVien == idusername)
-            {
-                banlahuanluyenvien = true;
-            }
-        }
-    }
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
-@if (Request.IsAuthenticated && banlahuanluyenvien == false & banlasinhvien == false)
+@if (Request.IsAuthenticated)
 {
-    <div class="w3-row-padding">
-        <div class="w3-half">
-            <h2>Bạn là sinh viên ?</h2>
-            <p><a class="btn btn-default" href="@Url.Action("DangKySinhVien","Home",new { username=User.Identity.GetUserName() })">Đăng ký theo sinh viên &raquo;</a></p>
-
-
+    <!-- Student banner -->
+    <header class="w3-display-container w3-wide w3-text-deep-purple" id="home">
+        <img class="w3-image" src="~/Content/image/studentbanner.png" alt="Student's Banner" width="1600" height="1060">
+        <div class="w3-display-left w3-padding-large">
+            <h1 class="w3-text-white">Đăng Ký</h1>
+            <h1 class="w3-jumbo w3-hide-small"><b >SINH VIÊN</b></h1>
+            <h6><a class="w3-button w3-deep-purple w3-padding-large w3-large" href="@Url.Action("DangKySinhVien","Home",new { username=User.Identity.GetUserName() })">Đăng ký SV &raquo;</a></h6>
         </div>
-        <div class="w3-half">
-            <h2>Bạn là huấn luyện viên ?</h2>
-            <p><a class="btn btn-default" href="@Url.Action("DangKyHuanLuyenVien","Home",new { username=User.Identity.GetUserName() })">Đăng ký theo huấn luyện viên &raquo;</a></p>
+    </header>
 
-
+    <!-- Coach banner -->
+    <header class="w3-display-container w3-wide w3-text-blue" id="home">
+        <img class="w3-image" src="~/Content/image/coachbanner.png" alt="Student's Banner" width="1600" height="1060">
+        <div class="w3-display-right w3-padding-large ">
+            <h1 class="w3-text-white w3-right-align">Đăng Ký</h1>
+            <h1 class="w3-jumbo  w3-hide-small"><b>HUẤN LUYỆN VIÊN</b></h1>
+            <h6 class="w3-right-align"><a class="w3-button w3-blue w3-padding-large w3-large" href="@Url.Action("DangKyHuanLuyenVien","Home",new { username=User.Identity.GetUserName() })">Đăng ký HLV &raquo;</a></h6>
         </div>
-    </div>
+    </header>
+    
 }
-else if (banlasinhvien)
-{
-    <p><a class="btn btn-default" href="@Url.Action()">Kiểm Tra Trực tuyến  &raquo;</a></p>
-}
-else if (banlahuanluyenvien)
-{
 
-}

@@ -17,7 +17,7 @@ namespace WebsiteQuanLyHocNgheCuaHung.Areas.SinhVien
             context.MapRoute(
                 "SinhVien_default",
                 "SinhVien/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { controller = "SinhVien", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
