@@ -1,10 +1,19 @@
 ﻿@model WebsiteQuanLyHocNgheCuaHung.Models.SinhVien
-
+@using WebsiteQuanLyHocNgheCuaHung.Models
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    Entities db = new Entities();
+    List<string> listHoTenHLV = new List<string>();
+    listHoTenHLV.Add("Chưa có giảng viên");
+    foreach (var item in db.HuanLuyenViens)
+    {
+        listHoTenHLV.Add(item.HoTen);
+    }
+    var id = ViewData["id"].ToString();
+    var dbSinhVien = db.SinhViens.Single(t=>t.IDSinhVien.Equals(id));
 }
-
+<a class="w3-button w3-deep-purple" href="@Url.Action("Index","SinhVien",new {Area="SinhVien" })">Trở về</a>
 <h2>Edit</h2>
 
 @using (Html.BeginForm())
@@ -17,10 +26,10 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IDSinhVien)
 
-        <div class="form-group">
+        <div class="form-group w3-hide">
             @Html.LabelFor(model => model.MSSV, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.MSSV, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.MSSV, new { htmlAttributes = new { @class = "w3-input w3-border" } })
                 @Html.ValidationMessageFor(model => model.MSSV, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,7 +37,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.HoTen, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.HoTen, new { htmlAttributes = new { @class = "w3-input w3-border" } })
                 @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,15 +45,15 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DiaChi, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "w3-input w3-border" } })
                 @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group w3-hide">
             @Html.LabelFor(model => model.NgonNguLapTrinh, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NgonNguLapTrinh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.NgonNguLapTrinh, new { htmlAttributes = new { @class = "w3-input w3-border" } })
                 @Html.ValidationMessageFor(model => model.NgonNguLapTrinh, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -52,7 +61,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.NgaySinh, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.NgaySinh, new { htmlAttributes = new { @class = "w3-input w3-border" } })
                 @Html.ValidationMessageFor(model => model.NgaySinh, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -60,7 +69,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TrinhDoHocVan, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TrinhDoHocVan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.TrinhDoHocVan, new { htmlAttributes = new { @class = "w3-input w3-border" } })
                 @Html.ValidationMessageFor(model => model.TrinhDoHocVan, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -68,35 +77,33 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DiemTOEFL, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DiemTOEFL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.DiemTOEFL, new { htmlAttributes = new { @class = "w3-input w3-border" } })
                 @Html.ValidationMessageFor(model => model.DiemTOEFL, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group w3-hide">
             @Html.LabelFor(model => model.TinhTrangSinhVien, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TinhTrangSinhVien, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.TinhTrangSinhVien, new SelectList(listHoTenHLV), new { @class = "w3-input w3-border" })
                 @Html.ValidationMessageFor(model => model.TinhTrangSinhVien, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group w3-hide">
             @Html.LabelFor(model => model.DiemThiTracNghiem, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DiemThiTracNghiem, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.DiemThiTracNghiem, new { htmlAttributes = new { @class = "w3-input w3-border" } })
                 @Html.ValidationMessageFor(model => model.DiemThiTracNghiem, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Lưu" class="w3-button w3-pink" />
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+

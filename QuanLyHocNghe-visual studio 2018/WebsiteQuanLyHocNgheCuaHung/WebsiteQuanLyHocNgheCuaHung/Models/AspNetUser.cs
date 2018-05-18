@@ -20,6 +20,8 @@ namespace WebsiteQuanLyHocNgheCuaHung.Models
             this.AspNetUserClaims = new HashSet<AspNetUserClaim>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogin>();
             this.AspNetRoles = new HashSet<AspNetRole>();
+            this.ChatBoxes = new HashSet<ChatBox>();
+            this.ChatBoxes1 = new HashSet<ChatBox>();
         }
     
         public string Id { get; set; }
@@ -44,5 +46,9 @@ namespace WebsiteQuanLyHocNgheCuaHung.Models
         public virtual SinhVien SinhVien { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AspNetRole> AspNetRoles { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChatBox> ChatBoxes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChatBox> ChatBoxes1 { get; set; }
     }
 }

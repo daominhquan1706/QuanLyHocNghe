@@ -1,14 +1,73 @@
 ﻿@using Microsoft.AspNet.Identity
-
+@using WebsiteQuanLyHocNgheCuaHung.Models
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Entities db = new Entities();
 }
+<div class="">
 
-<h2 class="w3-text">xin chào @User.Identity.GetUserName()</h2>
+    <!-- Header -->
+    <header class="w3-container" style="padding-top:22px">
+        <h5><b><i class="fa fa-dashboard"></i> Admin's Dashboard</b></h5>
+    </header>
+
+    <div class="w3-row-padding w3-margin-bottom">
+        <div class="w3-quarter">
+            <a href="@Url.Action("Index","HopDongs",new { Area=""})">
+
+                <div class="w3-container w3-pink w3-padding-16">
+                    <div class="w3-left"><i class="fa fa-handshake-o w3-xxxlarge"></i></div>
+                    <div class="w3-right">
+                        <h3>@db.HopDongs.Count()</h3>
+                    </div>
+                    <div class="w3-clear"></div>
+                    <h4>Hợp đồng</h4>
+                </div>
+            </a>
+        </div>
+        <div class="w3-quarter">
+            <a href="@Url.Action("Index","ChungChis",new { Area=""})">
+
+                <div class="w3-container w3-blue w3-padding-16">
+                    <div class="w3-left"><i class="fa fa-wpforms w3-xxxlarge"></i></div>
+                    <div class="w3-right">
+                        <h3>@db.ChungChis.Count()</h3>
+                    </div>
+                    <div class="w3-clear"></div>
+                    <h4>Chứng Chỉ</h4>
+                </div>
+            </a>
+        </div>
+        <div class="w3-quarter">
+            <a href="@Url.Action("Index","SinhViens",new { Area=""})">
+
+                <div class="w3-container w3-deep-purple w3-padding-16">
+                    <div class="w3-left"><i class="fa fa-users w3-xxxlarge"></i></div>
+                    <div class="w3-right">
+                        <h3>@db.SinhViens.Count()</h3>
+                    </div>
+                    <div class="w3-clear"></div>
+                    <h4>Thực Tập Sinh</h4>
+                </div>
+            </a>
+        </div>
+        <div class="w3-quarter">
+            <a href="@Url.Action("Index","HuanLuyenViens",new { Area=""})">
+
+                <div class="w3-container w3-purple w3-text-white w3-padding-16">
+                    <div class="w3-left"><i class="fa fa-street-view w3-xxxlarge"></i></div>
+                    <div class="w3-right">
+                        <h3>@db.HuanLuyenViens.Count()</h3>
+                    </div>
+                    <div class="w3-clear"></div>
+                    <h4>Huấn Luyện Viên</h4>
+                </div>
+            </a>
+        </div>
+        
 
 
-<div class="w3-row-padding w3-margin-bottom w3-third">
 
-    Trang chủ role Admin
+    </div>
 </div>

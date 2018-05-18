@@ -67,6 +67,16 @@
           <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="NgayTaoTaiKhoan" Type="date" />
         </EntityType>
+        <EntityType Name="ChatBox">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID_Gui" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="TinNhan" Type="ntext" Nullable="false" />
+          <Property Name="ThoiGian" Type="datetime" Nullable="false" />
+          <Property Name="UserID_Nhan" Type="nvarchar" MaxLength="128" Nullable="false" />
+        </EntityType>
         <EntityType Name="ChungChi">
           <Key>
             <PropertyRef Name="MaChungChi" />
@@ -83,14 +93,9 @@
           <Property Name="MaChungChi" Type="int" Nullable="false" />
           <Property Name="NgayNhanChungChi" Type="date" Nullable="false" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334.dbo.HopDong' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="HopDong">
           <Key>
             <PropertyRef Name="IDSinhVien" />
-            <PropertyRef Name="IDHuanLuyenVien" />
-            <PropertyRef Name="NgayTaoHopDong" />
-            <PropertyRef Name="NgayKetThucHopDong" />
           </Key>
           <Property Name="IDSinhVien" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="IDHuanLuyenVien" Type="nvarchar" MaxLength="128" Nullable="false" />
@@ -104,7 +109,7 @@ warning 6002: The table/view 'aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334.
           <Property Name="IDHuanLuyenVien" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="HoTen" Type="nvarchar(max)" Nullable="false" />
           <Property Name="DienThoai" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="BoPhan" Type="nvarchar(max)" />
+          <Property Name="BoPhan" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="SinhVien">
           <Key>
@@ -121,6 +126,30 @@ warning 6002: The table/view 'aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334.
           <Property Name="TinhTrangSinhVien" Type="nvarchar(max)" />
           <Property Name="DiemThiTracNghiem" Type="int" />
         </EntityType>
+        <Association Name="FK_ChatBox_SoTietKiem">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ChatBox" Type="Self.ChatBox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChatBox">
+              <PropertyRef Name="UserID_Gui" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChatBox_SoTietKiem1">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+          <End Role="ChatBox" Type="Self.ChatBox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChatBox">
+              <PropertyRef Name="UserID_Nhan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ChungChiSinhVien_ChungChi">
           <End Role="ChungChi" Type="Self.ChungChi" Multiplicity="1" />
           <End Role="ChungChiSinhVien" Type="Self.ChungChiSinhVien" Multiplicity="*" />
@@ -215,7 +244,7 @@ warning 6002: The table/view 'aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334.
         </Association>
         <Association Name="FK_HopDong_SinhVien">
           <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="1" />
-          <End Role="HopDong" Type="Self.HopDong" Multiplicity="*" />
+          <End Role="HopDong" Type="Self.HopDong" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="SinhVien">
               <PropertyRef Name="IDSinhVien" />
@@ -256,18 +285,20 @@ warning 6002: The table/view 'aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334.
           <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChatBox" EntityType="Self.ChatBox" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChungChi" EntityType="Self.ChungChi" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ChungChiSinhVien" EntityType="Self.ChungChiSinhVien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HopDong" EntityType="Self.HopDong" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HuanLuyenVien" EntityType="Self.HuanLuyenVien" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SinhVien" EntityType="Self.SinhVien" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="HopDong" EntityType="Self.HopDong" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [HopDong].[IDSinhVien] AS [IDSinhVien], 
-    [HopDong].[IDHuanLuyenVien] AS [IDHuanLuyenVien], 
-    [HopDong].[NgayTaoHopDong] AS [NgayTaoHopDong], 
-    [HopDong].[NgayKetThucHopDong] AS [NgayKetThucHopDong]
-    FROM [dbo].[HopDong] AS [HopDong]</DefiningQuery>
-          </EntitySet>
+          <AssociationSet Name="FK_ChatBox_SoTietKiem" Association="Self.FK_ChatBox_SoTietKiem">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ChatBox" EntitySet="ChatBox" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChatBox_SoTietKiem1" Association="Self.FK_ChatBox_SoTietKiem1">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="ChatBox" EntitySet="ChatBox" />
+          </AssociationSet>
           <AssociationSet Name="FK_ChungChiSinhVien_ChungChi" Association="Self.FK_ChungChiSinhVien_ChungChi">
             <End Role="ChungChi" EntitySet="ChungChi" />
             <End Role="ChungChiSinhVien" EntitySet="ChungChiSinhVien" />
@@ -374,6 +405,8 @@ warning 6002: The table/view 'aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334.
           <NavigationProperty Name="HuanLuyenVien" Relationship="Self.FK_HuanLuyenVien_AspNetUsers" FromRole="AspNetUsers" ToRole="HuanLuyenVien" />
           <NavigationProperty Name="SinhVien" Relationship="Self.FK_SinhVien_AspNetUsers" FromRole="AspNetUsers" ToRole="SinhVien" />
           <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+          <NavigationProperty Name="ChatBoxes" Relationship="Model.FK_ChatBox_SoTietKiem" FromRole="AspNetUser" ToRole="ChatBox" />
+          <NavigationProperty Name="ChatBoxes1" Relationship="Model.FK_ChatBox_SoTietKiem1" FromRole="AspNetUser" ToRole="ChatBox" />
         </EntityType>
         <EntityType Name="ChungChi">
           <Key>
@@ -401,9 +434,9 @@ warning 6002: The table/view 'aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334.
           <Property Name="IDHuanLuyenVien" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="HoTen" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DienThoai" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="BoPhan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BoPhan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK_HuanLuyenVien_AspNetUsers" FromRole="HuanLuyenVien" ToRole="AspNetUsers" />
-          <NavigationProperty Name="HopDongs" Relationship="Self.FK_HopDong_HuanLuyenVien" FromRole="HuanLuyenVien" ToRole="HopDong" />
+          <NavigationProperty Name="HopDongs" Relationship="Model.FK_HopDong_HuanLuyenVien" FromRole="HuanLuyenVien" ToRole="HopDong" />
         </EntityType>
         <EntityType Name="SinhVien">
           <Key>
@@ -420,22 +453,8 @@ warning 6002: The table/view 'aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334.
           <Property Name="TinhTrangSinhVien" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="AspNetUser" Relationship="Self.FK_SinhVien_AspNetUsers" FromRole="SinhVien" ToRole="AspNetUsers" />
           <NavigationProperty Name="ChungChiSinhViens" Relationship="Self.FK_ChungChiSinhVien_SinhVien" FromRole="SinhVien" ToRole="ChungChiSinhVien" />
-          <NavigationProperty Name="HopDongs" Relationship="Self.FK_HopDong_SinhVien" FromRole="SinhVien" ToRole="HopDong" />
           <Property Name="DiemThiTracNghiem" Type="Int32" />
-        </EntityType>
-        <EntityType Name="HopDong">
-          <Key>
-            <PropertyRef Name="IDSinhVien" />
-            <PropertyRef Name="IDHuanLuyenVien" />
-            <PropertyRef Name="NgayTaoHopDong" />
-            <PropertyRef Name="NgayKetThucHopDong" />
-          </Key>
-          <Property Name="IDSinhVien" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="IDHuanLuyenVien" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="NgayTaoHopDong" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="NgayKetThucHopDong" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="HuanLuyenVien" Relationship="Self.FK_HopDong_HuanLuyenVien" FromRole="HopDong" ToRole="HuanLuyenVien" />
-          <NavigationProperty Name="SinhVien" Relationship="Self.FK_HopDong_SinhVien" FromRole="HopDong" ToRole="SinhVien" />
+          <NavigationProperty Name="HopDong" Relationship="Model.FK_HopDong_SinhVien" FromRole="SinhVien" ToRole="HopDong" />
         </EntityType>
         <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="1">
@@ -513,30 +532,6 @@ warning 6002: The table/view 'aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334.
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_HopDong_HuanLuyenVien">
-          <End Role="HuanLuyenVien" Type="Self.HuanLuyenVien" Multiplicity="1" />
-          <End Role="HopDong" Type="Self.HopDong" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HuanLuyenVien">
-              <PropertyRef Name="IDHuanLuyenVien" />
-            </Principal>
-            <Dependent Role="HopDong">
-              <PropertyRef Name="IDHuanLuyenVien" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_HopDong_SinhVien">
-          <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="1" />
-          <End Role="HopDong" Type="Self.HopDong" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SinhVien">
-              <PropertyRef Name="IDSinhVien" />
-            </Principal>
-            <Dependent Role="HopDong">
-              <PropertyRef Name="IDSinhVien" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="AspNetUserRoles">
           <End Role="AspNetRoles" Type="Self.AspNetRole" Multiplicity="*" />
           <End Role="AspNetUsers" Type="Self.AspNetUser" Multiplicity="*" />
@@ -551,7 +546,6 @@ warning 6002: The table/view 'aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334.
           <EntitySet Name="ChungChiSinhViens" EntityType="Self.ChungChiSinhVien" />
           <EntitySet Name="HuanLuyenViens" EntityType="Self.HuanLuyenVien" />
           <EntitySet Name="SinhViens" EntityType="Self.SinhVien" />
-          <EntitySet Name="HopDongs" EntityType="Self.HopDong" />
           <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
             <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -576,19 +570,100 @@ warning 6002: The table/view 'aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334.
             <End Role="SinhVien" EntitySet="SinhViens" />
             <End Role="ChungChiSinhVien" EntitySet="ChungChiSinhViens" />
           </AssociationSet>
-          <AssociationSet Name="FK_HopDong_HuanLuyenVien" Association="Self.FK_HopDong_HuanLuyenVien">
-            <End Role="HuanLuyenVien" EntitySet="HuanLuyenViens" />
-            <End Role="HopDong" EntitySet="HopDongs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_HopDong_SinhVien" Association="Self.FK_HopDong_SinhVien">
-            <End Role="SinhVien" EntitySet="SinhViens" />
-            <End Role="HopDong" EntitySet="HopDongs" />
-          </AssociationSet>
           <AssociationSet Name="AspNetUserRoles" Association="Self.AspNetUserRoles">
             <End Role="AspNetRoles" EntitySet="AspNetRoles" />
             <End Role="AspNetUsers" EntitySet="AspNetUsers" />
           </AssociationSet>
+          <EntitySet Name="ChatBoxes" EntityType="Model.ChatBox" />
+          <AssociationSet Name="FK_ChatBox_SoTietKiem" Association="Model.FK_ChatBox_SoTietKiem">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="ChatBox" EntitySet="ChatBoxes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChatBox_SoTietKiem1" Association="Model.FK_ChatBox_SoTietKiem1">
+            <End Role="AspNetUser" EntitySet="AspNetUsers" />
+            <End Role="ChatBox" EntitySet="ChatBoxes" />
+          </AssociationSet>
+          <EntitySet Name="HopDongs" EntityType="Model.HopDong" />
+          <AssociationSet Name="FK_HopDong_HuanLuyenVien" Association="Model.FK_HopDong_HuanLuyenVien">
+            <End Role="HuanLuyenVien" EntitySet="HuanLuyenViens" />
+            <End Role="HopDong" EntitySet="HopDongs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HopDong_SinhVien" Association="Model.FK_HopDong_SinhVien">
+            <End Role="SinhVien" EntitySet="SinhViens" />
+            <End Role="HopDong" EntitySet="HopDongs" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ChatBox">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID_Gui" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TinNhan" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ThoiGian" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UserID_Nhan" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUser" Relationship="Model.FK_ChatBox_SoTietKiem" FromRole="ChatBox" ToRole="AspNetUser" />
+          <NavigationProperty Name="AspNetUser1" Relationship="Model.FK_ChatBox_SoTietKiem1" FromRole="ChatBox" ToRole="AspNetUser" />
+        </EntityType>
+        <Association Name="FK_ChatBox_SoTietKiem">
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="Model.ChatBox" Role="ChatBox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChatBox">
+              <PropertyRef Name="UserID_Gui" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChatBox_SoTietKiem1">
+          <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
+          <End Type="Model.ChatBox" Role="ChatBox" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUser">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ChatBox">
+              <PropertyRef Name="UserID_Nhan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HopDong">
+          <Key>
+            <PropertyRef Name="IDSinhVien" />
+          </Key>
+          <Property Name="IDSinhVien" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="IDHuanLuyenVien" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTaoHopDong" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="NgayKetThucHopDong" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="HuanLuyenVien" Relationship="Model.FK_HopDong_HuanLuyenVien" FromRole="HopDong" ToRole="HuanLuyenVien" />
+          <NavigationProperty Name="SinhVien" Relationship="Model.FK_HopDong_SinhVien" FromRole="HopDong" ToRole="SinhVien" />
+        </EntityType>
+        <Association Name="FK_HopDong_HuanLuyenVien">
+          <End Type="Model.HuanLuyenVien" Role="HuanLuyenVien" Multiplicity="1" />
+          <End Type="Model.HopDong" Role="HopDong" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HuanLuyenVien">
+              <PropertyRef Name="IDHuanLuyenVien" />
+            </Principal>
+            <Dependent Role="HopDong">
+              <PropertyRef Name="IDHuanLuyenVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HopDong_SinhVien">
+          <End Type="Model.SinhVien" Role="SinhVien" Multiplicity="1" />
+          <End Type="Model.HopDong" Role="HopDong" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SinhVien">
+              <PropertyRef Name="IDSinhVien" />
+            </Principal>
+            <Dependent Role="HopDong">
+              <PropertyRef Name="IDSinhVien" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -695,16 +770,6 @@ warning 6002: The table/view 'aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334.
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HopDongs">
-            <EntityTypeMapping TypeName="Model.HopDong">
-              <MappingFragment StoreEntitySet="HopDong">
-                <ScalarProperty Name="IDSinhVien" ColumnName="IDSinhVien" />
-                <ScalarProperty Name="IDHuanLuyenVien" ColumnName="IDHuanLuyenVien" />
-                <ScalarProperty Name="NgayTaoHopDong" ColumnName="NgayTaoHopDong" />
-                <ScalarProperty Name="NgayKetThucHopDong" ColumnName="NgayKetThucHopDong" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <AssociationSetMapping Name="AspNetUserRoles" TypeName="Model.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
             <EndProperty Name="AspNetRoles">
               <ScalarProperty Name="Id" ColumnName="RoleId" />
@@ -713,6 +778,27 @@ warning 6002: The table/view 'aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334.
               <ScalarProperty Name="Id" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="ChatBoxes">
+            <EntityTypeMapping TypeName="Model.ChatBox">
+              <MappingFragment StoreEntitySet="ChatBox">
+                <ScalarProperty Name="UserID_Nhan" ColumnName="UserID_Nhan" />
+                <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+                <ScalarProperty Name="TinNhan" ColumnName="TinNhan" />
+                <ScalarProperty Name="UserID_Gui" ColumnName="UserID_Gui" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HopDongs">
+            <EntityTypeMapping TypeName="Model.HopDong">
+              <MappingFragment StoreEntitySet="HopDong">
+                <ScalarProperty Name="NgayKetThucHopDong" ColumnName="NgayKetThucHopDong" />
+                <ScalarProperty Name="NgayTaoHopDong" ColumnName="NgayTaoHopDong" />
+                <ScalarProperty Name="IDHuanLuyenVien" ColumnName="IDHuanLuyenVien" />
+                <ScalarProperty Name="IDSinhVien" ColumnName="IDSinhVien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
