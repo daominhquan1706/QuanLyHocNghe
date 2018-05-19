@@ -32,17 +32,17 @@
             </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group w3-hide">
             @Html.LabelFor(model => model.NgayNhanChungChi, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.NgayNhanChungChi, new { htmlAttributes = new { @class = "w3-input w3-border" } })
+                <input name="NgayNhanChungChi" value="@DateTime.Now"/>
                 @Html.ValidationMessageFor(model => model.NgayNhanChungChi, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Create" class="w3-button w3-yellow" />
             </div>
         </div>
     </div>

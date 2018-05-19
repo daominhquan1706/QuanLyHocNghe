@@ -32,9 +32,19 @@
         <td>
             @Html.DisplayFor(modelItem => item.HoTen)
         </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TinhTrangSinhVien)
-        </td>
+        @if (item.TinhTrangSinhVien == "Đã Ký Hợp Đồng")
+        {
+            <td class="w3-text-green">
+                @Html.DisplayFor(modelItem => item.TinhTrangSinhVien)
+            </td>
+        }
+        else
+        {
+            <td class="">
+                @Html.DisplayFor(modelItem => item.TinhTrangSinhVien)
+            </td>
+        }
+
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.IDSinhVien }) |
             @Html.ActionLink("Details", "Details", new { id=item.IDSinhVien }) |

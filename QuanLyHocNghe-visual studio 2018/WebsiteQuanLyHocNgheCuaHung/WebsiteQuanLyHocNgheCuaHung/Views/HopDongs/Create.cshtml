@@ -43,7 +43,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IDSinhVien, "IDSinhVien", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("IDSinhVien", new SelectList(listSinhVienChuaCoHopDong, "IDSinhVien","HoTen"), htmlAttributes: new { @class = "w3-input w3-border" })
+                @Html.DropDownList("IDSinhVien", new SelectList(listSinhVienChuaCoHopDong, "IDSinhVien","HoTen"), htmlAttributes: new { @class = "w3-input w3-border" ,@required="required" })
                 @Html.ValidationMessageFor(model => model.IDSinhVien, "", new { @class = "text-danger" })
             </div>
         </div>

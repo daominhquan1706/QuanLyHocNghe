@@ -7,9 +7,8 @@
 
 <h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<a href="@Url.Action("Create", "ChungChis")" class="w3-button w3-blue">Tạo Chứng Chỉ <i class="fa fa-arrow-right"></i></a>
+<a href="@Url.Action("Index", "ChungChiSinhViens",new { Area=""})" class="w3-button w3-deep-purple">gán chứng chỉ <i class="fa fa-arrow-right"></i></a>
 <table class="container">
     <tr>
         <th>

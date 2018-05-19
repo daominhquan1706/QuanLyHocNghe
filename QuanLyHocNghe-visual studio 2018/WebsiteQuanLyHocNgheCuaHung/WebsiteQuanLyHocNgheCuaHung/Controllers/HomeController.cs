@@ -180,6 +180,37 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
             ViewBag.IDSinhVien = new SelectList(db.AspNetUsers, "Id", "Email", sinhVien.IDSinhVien);
             return View(sinhVien);
         }
+        public ActionResult EditHuanLuyenVien(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            HuanLuyenVien huanLuyenVien = db.HuanLuyenViens.Find(id);
+            if (huanLuyenVien == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.IDHuanLuyenVien = new SelectList(db.AspNetUsers, "Id", "Email", huanLuyenVien.IDHuanLuyenVien);
+            return View(huanLuyenVien);
+        }
+
+        // POST: HuanLuyenViens/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditHuanLuyenVien([Bind(Include = "IDHuanLuyenVien,HoTen,DienThoai,BoPhan")] HuanLuyenVien huanLuyenVien)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(huanLuyenVien).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.IDHuanLuyenVien = new SelectList(db.AspNetUsers, "Id", "Email", huanLuyenVien.IDHuanLuyenVien);
+            return View(huanLuyenVien);
+        }
 
     }
 }

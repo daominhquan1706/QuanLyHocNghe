@@ -290,6 +290,7 @@
     <Content Include="Content\image\plugins\fastclick\fastclick.js" />
     <Content Include="Content\image\plugins\jquery\jquery.min.js" />
     <Content Include="Content\image\plugins\slimScroll\jquery.slimscroll.min.js" />
+    <Content Include="Content\image\region.jpg" />
     <Content Include="Content\image\searchicon.png" />
     <Content Include="Content\image\studentbanner.png" />
     <Content Include="Content\jquery.min.js" />
@@ -420,6 +421,7 @@
     <Content Include="Views\ChungChiSinhViens\Details.cshtml" />
     <Content Include="Views\ChungChiSinhViens\Edit.cshtml" />
     <Content Include="Views\ChungChiSinhViens\Index.cshtml" />
+    <Content Include="Views\Home\EditHuanLuyenVien.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

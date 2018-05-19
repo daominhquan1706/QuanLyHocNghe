@@ -5,7 +5,7 @@
     {
     @Html.AntiForgeryToken()
         
-         <a href="@Url.Action("Index", "Manage", new { area = "" })" class="w3-bar-item w3-button w3-mobile">Hello @User.Identity.GetUserName() !</a>
+         <a href="@Url.Action("Index", "Manage", new { area = "" })" class="w3-bar-item w3-button w3-mobile w3-hover-pink">Hello @User.Identity.GetUserName() !</a>
         @*<li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {  title = "Manage" })
         </li>*@

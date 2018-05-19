@@ -50,27 +50,27 @@
     <div class="w3-half">
         <div class="w3-container w3-card-4 w3-white ">
             <div class="w3-container" style="height:450px">
+                <p class="w3-center w3-margin-top"><img src="~/Content/image/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
                 <h4 class="w3-center">@dbSinhVien.HoTen</h4>
-                <p class="w3-center"><img src="~/Content/image/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
                 <hr>
-                <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> 15dh1000<text>@dbSinhVien.MSSV</text></p>
-                <p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> @dbSinhVien.DiaChi</p>
-                <p><i class="fa fa-code w3-margin-right w3-text-theme"></i> @dbSinhVien.NgonNguLapTrinh</p>
-                <p><i class="fa fa-graduation-cap w3-margin-right w3-text-theme"></i> @dbSinhVien.TrinhDoHocVan</p>
-                <p><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> @dbSinhVien.NgaySinh.Day/@dbSinhVien.NgaySinh.Month/@dbSinhVien.NgaySinh.Year</p>
+                <p class="w3-large"><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> 15dh1000<text>@dbSinhVien.MSSV</text></p>
+                <p class="w3-large"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> @dbSinhVien.DiaChi</p>
+                <p class="w3-large"><i class="fa fa-code w3-margin-right w3-text-theme"></i> @dbSinhVien.NgonNguLapTrinh</p>
+                <p class="w3-large"><i class="fa fa-graduation-cap w3-margin-right w3-text-theme"></i> @dbSinhVien.TrinhDoHocVan</p>
+                <p class="w3-large"><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> @dbSinhVien.NgaySinh.Day/@dbSinhVien.NgaySinh.Month/@dbSinhVien.NgaySinh.Year</p>
                 @if (dbSinhVien.DiemThiTracNghiem != null)
                 {
-                <p><i class="fa fa-file-text-o fa-fw w3-margin-right w3-text-theme"></i> <text class="w3-hover-text-blue">Kiểm thử đạt <text>@dbSinhVien.DiemThiTracNghiem</text>đ</text></p>
+                <p class="w3-large"><i class="fa fa-file-text-o fa-fw w3-margin-right w3-text-theme"></i> <text class="w3-hover-text-blue">Kiểm thử đạt <text>@dbSinhVien.DiemThiTracNghiem</text>đ</text></p>
                 }
                 else
                 {
-                <p><i class="fa fa-file-text-o fa-fw w3-margin-right w3-text-theme"></i>Chưa kiểm tra</p>
+                <p class="w3-large"><i class="fa fa-file-text-o fa-fw w3-margin-right w3-text-theme"></i>Chưa kiểm tra</p>
                 }
                 @if(dbSinhVien.TinhTrangSinhVien=="Đã Ký Hợp Đồng")
                 {
                     var dbidHLV = db.HopDongs.Single(r => r.IDSinhVien.Equals(idsinhvien)).IDHuanLuyenVien;
                     var dbHuanLuyenVien = db.HuanLuyenViens.Single(t => t.IDHuanLuyenVien.Equals(dbidHLV));
-                <p><i class="fa fa-handshake-o fa-fw w3-margin-right w3-text-theme"></i> <text class="w3-hover-text-deep-purple">@dbSinhVien.TinhTrangSinhVien với @dbHuanLuyenVien.HoTen</text></p>
+                <p class="w3-large"><i class="fa fa-handshake-o fa-fw w3-margin-right w3-text-theme"></i> <text class="w3-hover-text-deep-purple">@dbSinhVien.TinhTrangSinhVien với @dbHuanLuyenVien.HoTen</text></p>
                 }
             </div>
         </div>
