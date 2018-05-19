@@ -191,7 +191,6 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.IDHuanLuyenVien = new SelectList(db.AspNetUsers, "Id", "Email", huanLuyenVien.IDHuanLuyenVien);
             return View(huanLuyenVien);
         }
 

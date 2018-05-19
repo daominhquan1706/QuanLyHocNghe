@@ -1,0 +1,136 @@
+﻿
+@{
+    ViewBag.Title = "KiemTraTrucTuyenJavaScript";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Kiểm định chất lượng</h3>
+<h1>
+    <b><text class="w3-text-deep-purple">ngôn ngữ lập trình JavaScript</text></b>
+</h1>
+@using (Html.BeginForm("KiemTraTrucTuyenCSharp", "SinhVien"))
+{
+    <div class="w3-card-4 w3-dark-grey w3-padding " style="margin-right:60%;position:fixed">
+        <div>
+            <p>Thời gian bắt đầu: Hôm nay lúc @DateTime.Now</p>
+            <p>Số câu hỏi: 10.   Tổng điểm: 10</p>
+            <p>Thời gian làm bài: 5 phút.</p>
+            <p>  Thời gian còn lại:</p>
+            <p id='tiles' class="w3-xxxlarge w3-padding w3-center"></p>
+        </div>
+        <div class="w3-center">
+            <button class="w3-button w3-amber w3-center" type="submit">Nộp bài</button>
+        </div>
+    </div>
+
+    <div class="w3-card-4 w3-dark-grey " style="margin-left:35%;padding:50px">
+        <div>
+            <p><b>Câu 1 :JavaScript các các biến dạng nào?</b></p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau1", "sai", new { @class = "w3-radio" })	Number, String, Boolean</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau1", "sai", new { @class = "w3-radio" })	Number, String, Boolean, Null</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau1", "dung", new { @class = "w3-radio" })	Tất cả các loại trên</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau1", "sai", new { @class = "w3-radio" })	Number, Interger, char</p>
+        </div>
+
+        <div>
+            <p><b>Câu 2 :Trong JavaScript sự kiện OnLoad xảy ra khi nào? </b></p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau2", "dung", new { @class = "w3-radio" })	Khi bắt đầu chạy chương trình</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau2", "sai", new { @class = "w3-radio" })	Khi click chuột</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau2", "sai", new { @class = "w3-radio" })	Khi kết thúc một chương trình</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau2", "sai", new { @class = "w3-radio" })	Khi di chuyển chuột qua</p>
+        </div>
+        <div>
+            <p><b>Câu 3 :Hàm alert() dùng để làm gì?</b></p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau3", "sai", new { @class = "w3-radio" })	Dùng để hiển thị một xác nhận Yes/No</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau3", "sai", new { @class = "w3-radio" })	Dùng để hiển thị một thông báo nhập dữ liệu</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau3", "dung", new { @class = "w3-radio" })	Dùng để hiển thị một thông báo</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau3", "sai", new { @class = "w3-radio" })	Dùng để chuyển đổi số sang chữ</p>
+        </div>
+        <div>
+            <p><b>Câu 4 :Trong JavaScript sự kiện Onclick xảy ra khi nào?</b></p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau4", "sai", new { @class = "w3-radio" })	Khi click chuột vào một đối tượng trong form</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau4", "sai", new { @class = "w3-radio" })	Khi một đối tượng trong form nhận focus</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau4", "sai", new { @class = "w3-radio" })	Khi một đối tượng trong form mất focus</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau4", "dung", new { @class = "w3-radio" })	Khi click chuột vào nút lệnh</p>
+        </div>
+        <div>
+            <p><b>Câu 5 :Trong JavaScript hàm parseInt() dùng để làm gì?</b></p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau5", "sai", new { @class = "w3-radio" })	Chuyển một chuỗi thành số</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau5", "sai", new { @class = "w3-radio" })	Chuyển một số nguyên thành một chuỗi</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau5", "dung", new { @class = "w3-radio" })	Chuyển một chuỗi thành số nguyên</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau5", "sai", new { @class = "w3-radio" })	huyển một chuỗi thành số thực</p>
+        </div>
+        <div>
+            <p><b>Câu 6 :Cách nào để làm tròn 7.25 tới số nguyên gần nhất trong JavaScript?</b></p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau6", "sai", new { @class = "w3-radio" })  round(7.25)</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau6", "sai", new { @class = "w3-radio" })  Math.round(7.25)</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau6", "sai", new { @class = "w3-radio" })  rnd(7.25)</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau6", "dung", new { @class = "w3-radio" })	Math.rnd(7.25)</p>
+        </div>
+        <div>
+            <p><b>Câu 7 :Trong JavaScript sự kiện OnMouseOver xảy ra khi nào?</b></p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau7", "sai", new { @class = "w3-radio" })	Khi một đối tượng trong form nhận focus</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau7", "sai", new { @class = "w3-radio" })	Khi kích chuột vào nút lệnh</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau7", "sai", new { @class = "w3-radio" })	Khi một đối tượng trong form mất focus</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau7", "dung", new { @class = "w3-radio" })	Khi di chuyển con chuột qua một đối tượng trong form</p>
+        </div>
+        <div>
+            <p><b>Câu 8 :Trong JavaScript sự kiện OnUnload xảy ra khi nào?</b></p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau8", "sai", new { @class = "w3-radio" })	Khi bắt đầu chạy chương trình</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau8", "sai", new { @class = "w3-radio" })	Khi di chuyển chuột qua</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau8", "dung", new { @class = "w3-radio" })	Khi kết thúc một chương trình</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau8", "sai", new { @class = "w3-radio" })	Khi kích chuột</p>
+        </div>
+        <div>
+            <p><b>Câu 9 :Trong JavaScript sự kiện Onchange xảy ra khi nào?</b></p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau9", "sai", new { @class = "w3-radio" })	Khi một đối tượng trong form mất focus</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau9", "sai", new { @class = "w3-radio" })	Khi một đối tượng trong form nhận focus</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau9", "dung", new { @class = "w3-radio" })	Xảy ra khi giá trị của một trường trong form được người dùng thay đổi dữ liệu</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau9", "sai", new { @class = "w3-radio" })	Khi kích chuột vào nút lệnh</p>
+        </div>
+        <div>
+            <p><b>Câu 10 :Trong JavaScript sự kiện Onblur thực hiện khi nào?</b></p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau10", "sai", new { @class = "w3-radio" })	Khi một đối tượng trong form nhận focus</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau10", "dung", new { @class = "w3-radio" })	Khi một đối tượng trong form mất focus</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau10", "sai", new { @class = "w3-radio" })	Khi di chuyển con chuột qua form</p>
+            <p class="w3-hover-text-blue" style="padding-left:50px">@Html.RadioButton("Cau10", "sai", new { @class = "w3-radio" })	Khi di chuyển chuột vào nút lệnh</p>
+        </div>
+
+    </div>
+}
+
+<script>
+    var target_date = new Date().getTime() + (3000 * 100); // set the countdown date
+    var days, hours, minutes, seconds; // variables for time units
+
+    var countdown = document.getElementById("tiles"); // get tag element
+
+    getCountdown();
+
+    setInterval(function () { getCountdown(); }, 1000);
+
+    function getCountdown() {
+
+        // find the amount of "seconds" between now and target
+        var current_date = new Date().getTime();
+        var seconds_left = (target_date - current_date) / 1000;
+
+        days = pad(parseInt(seconds_left / 86400));
+        seconds_left = seconds_left % 86400;
+
+        hours = pad(parseInt(seconds_left / 3600));
+        seconds_left = seconds_left % 3600;
+
+        minutes = pad(parseInt(seconds_left / 60));
+        seconds = pad(parseInt(seconds_left % 60));
+
+        // format countdown string + set tag value
+        countdown.innerHTML = minutes + ":" + seconds;
+    }
+
+    function pad(n) {
+        return (n < 10 ? '0' : '') + n;
+    }
+
+
+</script>

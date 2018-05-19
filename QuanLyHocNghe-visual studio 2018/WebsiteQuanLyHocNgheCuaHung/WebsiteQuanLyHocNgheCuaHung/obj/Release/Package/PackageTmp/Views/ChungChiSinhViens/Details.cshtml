@@ -1,0 +1,43 @@
+﻿@model WebsiteQuanLyHocNgheCuaHung.Models.ChungChiSinhVien
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>ChungChiSinhVien</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NgayNhanChungChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NgayNhanChungChi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ChungChi.TenChungChi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ChungChi.TenChungChi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SinhVien.HoTen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SinhVien.HoTen)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaChungChiSinhVien }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -7,6 +7,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     Entities db = new Entities();
     var username = User.Identity.GetUserName();
+    List<string> listBoPhan = new List<string>();
+    listBoPhan.Add("C#");
+    listBoPhan.Add("Java script");
 }
 
 <h2>DangKyHuanLuyenVien</h2>
@@ -47,7 +50,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BoPhan, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BoPhan, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
+                @Html.DropDownList("BoPhan", new SelectList(listBoPhan), new { @class = "w3-input w3-border", @required = "required" })
                 @Html.ValidationMessageFor(model => model.BoPhan, "", new { @class = "text-danger" })
             </div>
         </div>

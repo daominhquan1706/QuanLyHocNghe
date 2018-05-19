@@ -1,12 +1,10 @@
 ﻿@model WebsiteQuanLyHocNgheCuaHung.Models.HuanLuyenVien
-
 @{
-    ViewBag.Title = "EditHuanLuyenVien";
+    ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<h2>Edit</h2>
 
-<h2>EditHuanLuyenVien</h2>
-@Html.ActionLink("Trở về", "Index", "HuanLuyenVien", new { Area = "" ,@class="w3-button w3-deep-purple" })
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -15,8 +13,13 @@
         <h4>HuanLuyenVien</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.IDHuanLuyenVien)
-
+        <div class="form-group">
+            @Html.LabelFor(model => model.IDHuanLuyenVien, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IDHuanLuyenVien, new { htmlAttributes = new { @class = "w3-input w3-border" } })
+                @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
+            </div>
+        </div>
         <div class="form-group">
             @Html.LabelFor(model => model.HoTen, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -24,7 +27,6 @@
                 @Html.ValidationMessageFor(model => model.HoTen, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.DienThoai, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -32,7 +34,6 @@
                 @Html.ValidationMessageFor(model => model.DienThoai, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.LabelFor(model => model.BoPhan, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
@@ -40,15 +41,16 @@
                 @Html.ValidationMessageFor(model => model.BoPhan, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="w3-button w3-deep-purple" />
+                <input type="submit" value="Save" class="w3-button w3-yellow" />
             </div>
         </div>
     </div>
 }
-
 <div>
-
+    @Html.ActionLink("Back to List", "Index")
 </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

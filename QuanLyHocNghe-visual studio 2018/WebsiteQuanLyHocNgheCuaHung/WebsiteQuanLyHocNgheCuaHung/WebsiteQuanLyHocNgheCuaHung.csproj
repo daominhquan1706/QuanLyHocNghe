@@ -265,6 +265,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334.mdf" />
+    <Content Include="App_Data\aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334_log.ldf">
+      <DependentUpon>aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\adminlte.min.css" />
     <Content Include="Content\adminlte.min.js" />
     <Content Include="Content\bootstrap.bundle.min.js" />
@@ -351,6 +355,7 @@
     <Content Include="Areas\HuanLuyenVien\Views\HuanLuyenVien\XemSinhVien.cshtml" />
     <Content Include="Areas\HuanLuyenVien\Views\HuanLuyenVien\ChonSinhVienChatBox.cshtml" />
     <Content Include="Areas\HuanLuyenVien\Views\HuanLuyenVien\ChiTietSinhVien.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -424,7 +429,6 @@
     <Content Include="Views\Home\EditHuanLuyenVien.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\HuanLuyenVien\Models\" />
     <Folder Include="Areas\HuanLuyenVien\Views\Shared\" />
