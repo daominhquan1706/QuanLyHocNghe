@@ -1,0 +1,58 @@
+﻿@model WebsiteQuanLyHocNgheCuaHung.Models.ChungChiSinhVien
+@using WebsiteQuanLyHocNgheCuaHung.Models
+@{
+    ViewBag.Title = "TraoChungChiChoSinhVien";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string idsinhvien = ViewData["idsinhvien"].ToString();
+    Entities db = new Entities();
+    string ngonngu = db.SinhViens.Single(t => t.IDSinhVien.Equals(idsinhvien)).NgonNguLapTrinh;
+    int idngonngu = db.ChungChis.Single(t => t.TenChungChi.Equals(ngonngu)).MaChungChi;
+}
+
+<h2 id="xemdanhsachfit2">TraoChungChiChoSinhVien</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>ChungChiSinhVien</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group w3-hide">
+            @Html.LabelFor(model => model.IDSinhVien, "IDSinhVien", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input name="IDSinhVien" class="w3-input w3-border" value="@idsinhvien"/>
+                @Html.ValidationMessageFor(model => model.IDSinhVien, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaChungChi, "MaChungChi", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input value="@ngonngu" class="w3-input w3-border" disabled/>
+                <input name="MaChungChi" class="w3-input w3-border w3-hide" value="@idngonngu" />
+                @Html.ValidationMessageFor(model => model.MaChungChi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NgayNhanChungChi, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="w3-input w3-border" value="@DateTime.Now"  disabled />
+                <input class="w3-input w3-border w3-hide" name="NgayNhanChungChi" value="@DateTime.Now"  />
+                @Html.ValidationMessageFor(model => model.NgayNhanChungChi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Trao Chứng Chỉ" class="w3-button w3-yellow" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Trở về","Index", "HuanLuyenVien", new { Area = "" },new { @class="w3-button w3-blue"})
+</div>

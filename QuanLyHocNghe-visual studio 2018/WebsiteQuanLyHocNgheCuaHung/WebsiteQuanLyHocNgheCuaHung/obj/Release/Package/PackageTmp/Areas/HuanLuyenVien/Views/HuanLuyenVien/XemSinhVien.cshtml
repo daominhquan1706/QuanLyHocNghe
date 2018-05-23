@@ -1,0 +1,143 @@
+﻿@using WebsiteQuanLyHocNgheCuaHung.Models
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Entities db = new Entities();
+    var listSinhVien = db.SinhViens.ToList();
+}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+    .letter {
+        color:#fff;
+        font-size:6em;
+        margin:0;
+        padding:0;
+        transition: .5s;
+        transform:perspective(1000px) rotateX(35deg);
+    }
+        .letter .char1,
+        .letter .char2,
+        .letter .char3,
+        .letter .char4,
+        .letter .char5,
+        .letter .char6,
+        .letter .char7,
+        .letter .char8,
+        .letter .char9,
+        .letter .char10,
+        .letter .char11 {
+            display: inline-block;
+            padding: 0 10px;
+            transition: .5s;
+            text-shadow: 0 5px 2px rgba(0,0,0,.1);
+            box-shadow: 10px 50px 20px rgba(0,0,0,.1);
+            filter: blur(.5px);
+        }
+        .letter .char1,
+        .letter .char3,
+        .letter .char5,
+        .letter .char7,
+        .letter .char9,
+        .letter .char11 {
+            background: #172783;
+            transform: skewY(-15deg);
+        }
+        .letter .char2,
+        .letter .char4,
+        .letter .char6,
+        .letter .char8,
+        .letter .char10 {
+            background: #101b5a;
+            transform: skewY(15deg);
+        }
+        .letter:hover .char1,
+        .letter:hover .char2,
+        .letter:hover .char3,
+        .letter:hover .char4,
+        .letter:hover .char5,
+        .letter:hover .char6,
+        .letter:hover .char7,
+        .letter:hover .char8,
+        .letter:hover .char9,
+        .letter:hover .char10,
+        .letter:hover .char11 {
+            background: #172783;
+            transform: skewY(0deg);
+            filter: blur(0);
+            box-shadow: 0 2px 2px rgba(0,0,0,,.1);
+        }
+        .letter:hover{
+            transform:perspective(0px) rotateX(35deg)
+        }
+</style>
+<script>
+    $(document).ready(function () {
+        $(".letter").lettering();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#fffffff').DataTable();
+    });
+</script>
+<h1 class="letter">XemSinhVien</h1>
+<h1 id="xemdanhsachfit2"><span class="blue">&lt;</span>FitText.js<span class="blue">&gt;</span><span class="yellow">THỰC TẬP SINH</span></h1>
+<h2 id="fittext2">Created with love by <a href="http://pablogarciafernandez.com" target="_blank">Pablo García Fernández</a></h2>
+<a class="w3-button w3-pink w3-center" href="@Url.Action("Index","HuanLuyenVien")">Trở về</a>
+<div class="card-body">
+    <table id="fffffff" class="w3-container container">
+        <thead>
+            <tr>
+                <th>Họ Tên</th>
+                <th>Địa Chỉ</th>
+                <th>Trình Độ Học Vấn</th>
+                <th>Điểm TOEFL</th>
+                <th>Ngôn Ngữ Lập Trình</th>
+                <th>Điêm Thi</th>
+                <th>Tình Trạng</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in listSinhVien)
+            {
+                <tr class="">
+                    <td>@item.HoTen</td>
+                    <td>@item.DiaChi</td>
+                    <td>@item.TrinhDoHocVan</td>
+                    <td>@item.DiemTOEFL Điểm</td>
+                    <td>@item.NgonNguLapTrinh</td>
+                    <td>@item.DiemThiTracNghiem Điểm</td>
+                    @if (item.TinhTrangSinhVien == "Đã Ký Hợp Đồng")
+                        {
+                            <td class="w3-text-green">
+                                @Html.DisplayFor(modelItem => item.TinhTrangSinhVien)
+                            </td>
+                        }
+                        else if (item.TinhTrangSinhVien == "Đã Nhận Chứng Chỉ")
+                        {
+                            <td class="w3-text-yellow">
+                                @Html.DisplayFor(modelItem => item.TinhTrangSinhVien)
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.TinhTrangSinhVien)
+                            </td>
+                        }
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Họ Tên</th>
+                <th>Địa Chỉ</th>
+                <th>Trình Độ Học Vấn</th>
+                <th>Điểm TOEFL</th>
+                <th>Ngôn Ngữ Lập Trình</th>
+                <th>Điêm Thi</th>
+                <th>Tình Trạng</th>
+            </tr>
+        </tfoot>
+    </table>
+</div>

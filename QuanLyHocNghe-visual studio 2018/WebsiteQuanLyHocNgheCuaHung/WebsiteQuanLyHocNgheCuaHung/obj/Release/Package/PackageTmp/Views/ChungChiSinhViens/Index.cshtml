@@ -1,0 +1,44 @@
+﻿@model IEnumerable<WebsiteQuanLyHocNgheCuaHung.Models.ChungChiSinhVien>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<a href="@Url.Action("Create", "ChungChiSinhViens")" class="w3-button w3-yellow">Gán Chứng Chỉ <i class="fa fa-arrow-right"></i></a>
+<table class="container">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NgayNhanChungChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ChungChi.TenChungChi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SinhVien.HoTen)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayNhanChungChi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ChungChi.TenChungChi)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SinhVien.HoTen)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.MaChungChiSinhVien }) |*@
+            @Html.ActionLink("Details", "Details", new { id=item.MaChungChiSinhVien }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MaChungChiSinhVien })
+        </td>
+    </tr>
+}
+
+</table>

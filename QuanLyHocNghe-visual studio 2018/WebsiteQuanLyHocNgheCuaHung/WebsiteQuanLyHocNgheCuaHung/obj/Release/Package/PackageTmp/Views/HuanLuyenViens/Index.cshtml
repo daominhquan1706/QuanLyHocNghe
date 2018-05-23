@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WebsiteQuanLyHocNgheCuaHung.Models.HuanLuyenVien>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#fffffff').DataTable();
+    });
+</script>
+<h2 id="xemdanhsachfit2">Index</h2>
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table id="fffffff" class="w3-container container">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.HoTen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DienThoai)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BoPhan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AspNetUser.Email)
+            </th>
+            @*<th></th>*@
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoTen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DienThoai)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BoPhan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AspNetUser.Email)
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.IDHuanLuyenVien }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.IDHuanLuyenVien }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.IDHuanLuyenVien })
+                </td>*@
+            </tr>
+        }
+    </tbody>
+    
+</table>

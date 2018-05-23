@@ -1,0 +1,39 @@
+﻿@model WebsiteQuanLyHocNgheCuaHung.Models.SinhVien
+@using Microsoft.AspNet.Identity
+@using WebsiteQuanLyHocNgheCuaHung.Models
+
+
+@{
+
+    ViewBag.Title = "Home Page";
+    Entities db = new Entities();
+    if (Request.IsAuthenticated == false)
+    {
+        Response.Redirect("/Account/Login");
+    }
+}
+
+@if (Request.IsAuthenticated)
+{
+    <!-- Student banner -->
+    <header class="w3-display-container w3-wide w3-text-deep-purple" id="home">
+        <img class="w3-image" src="~/Content/image/studentbanner.png" alt="Student's Banner" width="1600" height="1060">
+        <div class="w3-display-left w3-padding-large">
+            <h1 class="w3-text-white">Đăng Ký</h1>
+            <h1 class="w3-jumbo w3-hide-small"><b >SINH VIÊN</b></h1>
+            <h6><a class="w3-button w3-deep-purple w3-padding-large w3-large" href="@Url.Action("DangKySinhVien","Home",new { username=User.Identity.GetUserName() })">Đăng ký SV &raquo;</a></h6>
+        </div>
+    </header>
+
+    <!-- Coach banner -->
+    <header class="w3-display-container w3-wide w3-text-blue" id="home">
+        <img class="w3-image" src="~/Content/image/coachbanner.png" alt="Student's Banner" width="1600" height="1060">
+        <div class="w3-display-right w3-padding-large ">
+            <h1 class="w3-text-white w3-right-align">Đăng Ký</h1>
+            <h1 class="w3-jumbo  w3-hide-small"><b>HUẤN LUYỆN VIÊN</b></h1>
+            <h6 class="w3-right-align"><a class="w3-button w3-blue w3-padding-large w3-large" href="@Url.Action("DangKyHuanLuyenVien","Home",new { username=User.Identity.GetUserName() })">Đăng ký HLV &raquo;</a></h6>
+        </div>
+    </header>
+    
+}
+

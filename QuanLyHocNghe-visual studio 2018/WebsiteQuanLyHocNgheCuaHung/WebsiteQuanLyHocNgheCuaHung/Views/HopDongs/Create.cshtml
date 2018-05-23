@@ -1,0 +1,90 @@
+﻿@model WebsiteQuanLyHocNgheCuaHung.Models.HopDong
+@using WebsiteQuanLyHocNgheCuaHung.Models
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Entities db = new Entities();
+    var listSinhVien = db.SinhViens;
+    List<SinhVien> listSinhVienChuaCoHopDong = new List<SinhVien>();
+    foreach(var itemhopdong in db.HopDongs)
+    {
+        foreach(var itemsinhvien in listSinhVien)
+        {
+            if(itemhopdong.IDSinhVien==itemsinhvien.IDSinhVien)
+            {
+                listSinhVien.Single(r => r.IDSinhVien.Equals(itemsinhvien.IDSinhVien)).HoTen = "";
+                listSinhVien.Single(r => r.IDSinhVien.Equals(itemsinhvien.IDSinhVien)).IDSinhVien = "";
+            }
+        }
+    }
+    foreach(var item in listSinhVien)
+    {
+        if(item.IDSinhVien !="" && item.DiemThiTracNghiem!=null)
+        {
+            listSinhVienChuaCoHopDong.Add(item);
+        }
+    }
+
+
+}
+
+<h2 id="xemdanhsachfit2">Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>HopDong</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.IDSinhVien, "IDSinhVien", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IDSinhVien", new SelectList(listSinhVienChuaCoHopDong, "IDSinhVien","HoTen"), htmlAttributes: new { @class = "w3-input w3-border" ,@required="required" })
+                @Html.ValidationMessageFor(model => model.IDSinhVien, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IDHuanLuyenVien, "IDHuanLuyenVien", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IDHuanLuyenVien", null, htmlAttributes: new { @class = "w3-input w3-border" })
+                @Html.ValidationMessageFor(model => model.IDHuanLuyenVien, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NgayTaoHopDong, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="w3-input w3-border" value="@DateTime.Now" disabled/>
+                <input class="w3-input w3-border w3-hide" name="NgayTaoHopDong" value="@DateTime.Now" required />
+                @Html.ValidationMessageFor(model => model.NgayTaoHopDong, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NgayKetThucHopDong, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input class="w3-input w3-border" value="@DateTime.Now.AddMonths(1)" disabled />
+                <input class="w3-input w3-border w3-hide" name="NgayKetThucHopDong" value="@DateTime.Now.AddMonths(1)" required />
+                @Html.ValidationMessageFor(model => model.NgayKetThucHopDong, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="w3-button w3-blue" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
