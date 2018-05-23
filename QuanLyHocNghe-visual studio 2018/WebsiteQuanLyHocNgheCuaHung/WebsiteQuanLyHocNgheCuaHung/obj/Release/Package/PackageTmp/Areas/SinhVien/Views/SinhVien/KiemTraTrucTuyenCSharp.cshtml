@@ -8,8 +8,8 @@
 <h1>
     <b><text class="w3-text-deep-purple">ngôn ngữ lập trình C#</text></b>
 </h1>
-    @using (Html.BeginForm("KiemTraTrucTuyenCSharp", "SinhVien"))
-{
+    @using (Html.BeginForm("KiemTraTrucTuyenCSharp", "SinhVien", FormMethod.Post, new { id = "nopbai" }))
+    {
 <div class="w3-card-4 w3-dark-grey w3-padding " style="margin-right:60%;position:fixed">
     <div>
         <p>Thời gian bắt đầu: Hôm nay lúc @DateTime.Now</p>
@@ -107,7 +107,7 @@
 }
 
 <script>
-    var target_date = new Date().getTime() + (3000 * 100); // set the countdown date
+    var target_date = new Date().getTime() + (300 * 100); // set the countdown date
     var days, hours, minutes, seconds; // variables for time units
 
     var countdown = document.getElementById("tiles"); // get tag element
@@ -121,7 +121,7 @@
         // find the amount of "seconds" between now and target
         var current_date = new Date().getTime();
         var seconds_left = (target_date - current_date) / 1000;
-
+        
         days = pad(parseInt(seconds_left / 86400));
         seconds_left = seconds_left % 86400;
 
@@ -132,12 +132,27 @@
         seconds = pad(parseInt(seconds_left % 60));
 
         // format countdown string + set tag value
-        countdown.innerHTML = minutes + ":" + seconds;
+        
+            countdown.innerHTML = minutes + ":" + seconds;
+        
+        if (document.getElementById('tiles').innerHTML == '00:00') {
+            document.getElementById('nopbai').submit();
+        }
+        if (document.getElementById('tiles').innerHTML == '00:01') {
+            document.getElementById('nopbai').submit();
+        }
+        if (document.getElementById('tiles').innerHTML == '00:02') {
+            document.getElementById('nopbai').submit();
+        }
+
     }
 
     function pad(n) {
         return (n < 10 ? '0' : '') + n;
     }
+    
 
-
+</script>
+<script>
+    
 </script>

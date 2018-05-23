@@ -10,6 +10,7 @@
     <header class="w3-container" style="padding-top:22px">
         <h5><b><i class="fa fa-dashboard"></i> Admin's Dashboard</b></h5>
     </header>
+
     <div class="w3-row-padding w3-margin-bottom">
         <div class="w3-quarter">
             <a href="@Url.Action("Index","HopDongs",new { Area=""})">
@@ -70,51 +71,57 @@
     <div class="w3-twothird">
         <h5>Feeds</h5>
         <table class="container">
+            <tr>
+                <th>                </th>
+                <th>                </th>
+                <th>                </th>
+            </tr>
+
             @{ int dem = 0;}
             @foreach (var item in db.HopDongs)
-            {
-                <tr>
-                    <td><i class="fa fa-handshake-o w3-text-blue w3-large"></i></td>
-                    <td>@item.SinhVien.HoTen vừa hoàn thành hợp đồng với @item.HuanLuyenVien.HoTen</td>
-                    <td><i>10 mins</i></td>
-                </tr>
-                dem++;
-                if (dem == 5)
-                {
-                    break;
-                }
-            }
+    {
+        <tr>
+            <td><i class="fa fa-handshake-o w3-text-blue w3-large"></i></td>
+            <td>@item.SinhVien.HoTen vừa hoàn thành hợp đồng với @item.HuanLuyenVien.HoTen</td>
+            <td><i>@item.NgayTaoHopDong</i></td>
+        </tr>
+dem++;
+if (dem == 5)
+{
+    break;
+}
+}
 
             @*<tr>
-                    <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
-                    <td>Database error.</td>
-                    <td><i>15 mins</i></td>
-                </tr>
-                <tr>
-                    <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
-                    <td>New record, over 40 users.</td>
-                    <td><i>17 mins</i></td>
-                </tr>
-                <tr>
-                    <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
-                    <td>New comments.</td>
-                    <td><i>25 mins</i></td>
-                </tr>
-                <tr>
-                    <td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
-                    <td>Check transactions.</td>
-                    <td><i>28 mins</i></td>
-                </tr>
-                <tr>
-                    <td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
-                    <td>CPU overload.</td>
-                    <td><i>35 mins</i></td>
-                </tr>
-                <tr>
-                    <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
-                    <td>New shares.</td>
-                    <td><i>39 mins</i></td>
-                </tr>*@
+            <td><i class="fa fa-bell w3-text-red w3-large"></i></td>
+            <td>Database error.</td>
+            <td><i>15 mins</i></td>
+        </tr>
+        <tr>
+            <td><i class="fa fa-users w3-text-yellow w3-large"></i></td>
+            <td>New record, over 40 users.</td>
+            <td><i>17 mins</i></td>
+        </tr>
+        <tr>
+            <td><i class="fa fa-comment w3-text-red w3-large"></i></td>
+            <td>New comments.</td>
+            <td><i>25 mins</i></td>
+        </tr>
+        <tr>
+            <td><i class="fa fa-bookmark w3-text-blue w3-large"></i></td>
+            <td>Check transactions.</td>
+            <td><i>28 mins</i></td>
+        </tr>
+        <tr>
+            <td><i class="fa fa-laptop w3-text-red w3-large"></i></td>
+            <td>CPU overload.</td>
+            <td><i>35 mins</i></td>
+        </tr>
+        <tr>
+            <td><i class="fa fa-share-alt w3-text-green w3-large"></i></td>
+            <td>New shares.</td>
+            <td><i>39 mins</i></td>
+        </tr>*@
         </table>
     </div>
 </div>

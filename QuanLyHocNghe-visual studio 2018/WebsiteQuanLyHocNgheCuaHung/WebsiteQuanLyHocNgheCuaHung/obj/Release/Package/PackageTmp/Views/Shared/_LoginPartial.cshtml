@@ -5,16 +5,38 @@
     {
     @Html.AntiForgeryToken()
         
-         <a href="@Url.Action("Index", "Manage", new { area = "" })" class="w3-bar-item w3-button w3-mobile w3-hover-pink">Hello @User.Identity.GetUserName() !</a>
+         <a href="@Url.Action("Index", "Manage", new { area = "" })" class="w3-bar-item w3-button w3-hover-pink w3-right  w3-hide-small">Hello @User.Identity.GetUserName() !</a>
         @*<li>
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {  title = "Manage" })
         </li>*@
-        <a href="javascript:document.getElementById('logoutForm').submit()" class="w3-bar-item w3-button w3-mobile w3-hover-pink">Log off</a>
+        <a href="javascript:document.getElementById('logoutForm').submit()" class="w3-bar-item w3-button  w3-hover-pink w3-right  w3-hide-small">Log off</a>
    
     }
 }
 else
 {
-        @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink",@class="w3-bar-item w3-button w3-mobile w3-hover-pink w3-right"})
-        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "w3-bar-item w3-button w3-mobile w3-hover-pink w3-right" })
+        @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink",@class= "w3-bar-item w3-button w3-hover-pink w3-right  w3-hide-small" })
+        @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "w3-bar-item w3-button  w3-hover-pink w3-right  w3-hide-small" })
 }
+
+<div id="navSmallScreen" class="w3-bar-block w3-black w3-hide w3-hide-large w3-hide-medium w3-top" style="margin-top:43px">
+       @if (Request.IsAuthenticated)
+        {
+            using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+            {
+            @Html.AntiForgeryToken()
+        
+                 <a href="@Url.Action("Index", "Manage", new { area = "" })" class="w3-bar-item w3-button w3-hover-pink w3-right ">Hello @User.Identity.GetUserName() !</a>
+                @*<li>
+                    @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new {  title = "Manage" })
+                </li>*@
+                <a href="javascript:document.getElementById('logoutForm').submit()" class="w3-bar-item w3-button w3-hover-pink w3-right">Log off</a>
+   
+            }
+        }
+        else
+        {
+                @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink",@class= "w3-bar-item w3-button w3-hover-pink w3-right " })
+                @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "w3-bar-item w3-button  w3-hover-pink w3-right " })
+        }
+</div>

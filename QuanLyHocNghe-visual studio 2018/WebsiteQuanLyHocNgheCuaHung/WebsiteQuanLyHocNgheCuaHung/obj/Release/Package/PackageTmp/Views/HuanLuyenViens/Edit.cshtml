@@ -3,9 +3,14 @@
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    List<string> listBoPhan = new List<string>();
+    listBoPhan.Add("Marketing");
+    listBoPhan.Add("Sales");
+    listBoPhan.Add("Phân tích thiết kế");
+    listBoPhan.Add("Quản lý nhân sự");
 }
 
-<h2>Edit</h2>
+<h2 id="xemdanhsachfit2">Edit</h2>
 
 
 @using (Html.BeginForm())
@@ -37,7 +42,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.BoPhan, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.BoPhan, new { htmlAttributes = new { @class = "w3-input w3-border" } })
+                @Html.DropDownList("BoPhan", new SelectList(listBoPhan), new { @class = "w3-input w3-border", @required = "required" })
                 @Html.ValidationMessageFor(model => model.BoPhan, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -281,6 +281,7 @@
     <Content Include="Content\image\dist\css\adminlte.min.css" />
     <Content Include="Content\image\dist\js\adminlte.min.js" />
     <Content Include="Content\image\dist\js\demo.js" />
+    <Content Include="Content\FitText\jquery.fittext.js" />
     <Content Include="Content\image\plugins\bootstrap\css\bootstrap-grid.css" />
     <Content Include="Content\image\plugins\bootstrap\css\bootstrap-grid.min.css" />
     <Content Include="Content\image\plugins\bootstrap\css\bootstrap-reboot.css" />
@@ -298,6 +299,7 @@
     <Content Include="Content\image\searchicon.png" />
     <Content Include="Content\image\studentbanner.png" />
     <Content Include="Content\jquery.min.js" />
+    <Content Include="Content\Lettering\jquery.lettering.js" />
     <Content Include="Content\w3.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -341,11 +343,6 @@
     <Content Include="Areas\HuanLuyenVien\Views\HuanLuyenVien\Index.cshtml" />
     <Content Include="Areas\SinhVien\Views\SinhVien\KiemTraTrucTuyenCSharp.cshtml" />
     <Content Include="Areas\SinhVien\Views\SinhVien\KiemTraTrucTuyenJavaScript.cshtml" />
-    <Content Include="Areas\SinhVien\Views\SinhViens\Create.cshtml" />
-    <Content Include="Areas\SinhVien\Views\SinhViens\Delete.cshtml" />
-    <Content Include="Areas\SinhVien\Views\SinhViens\Details.cshtml" />
-    <Content Include="Areas\SinhVien\Views\SinhViens\Edit.cshtml" />
-    <Content Include="Areas\SinhVien\Views\SinhViens\Index.cshtml" />
     <Content Include="Content\image\plugins\bootstrap\css\bootstrap-grid.css.map" />
     <Content Include="Content\image\plugins\bootstrap\css\bootstrap-grid.min.css.map" />
     <Content Include="Content\image\plugins\bootstrap\css\bootstrap-reboot.css.map" />
@@ -367,7 +364,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -427,6 +426,7 @@
     <Content Include="Views\ChungChiSinhViens\Edit.cshtml" />
     <Content Include="Views\ChungChiSinhViens\Index.cshtml" />
     <Content Include="Views\Home\EditHuanLuyenVien.cshtml" />
+    <Content Include="Views\Home\TraoChungChiChoSinhVien.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />

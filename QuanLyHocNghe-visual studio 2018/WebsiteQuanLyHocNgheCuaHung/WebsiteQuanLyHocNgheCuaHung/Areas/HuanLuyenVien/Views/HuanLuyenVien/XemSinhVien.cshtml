@@ -1,130 +1,91 @@
 ﻿@using WebsiteQuanLyHocNgheCuaHung.Models
 @{
-    ViewBag.Title = "XemSinhVien";
     Layout = "~/Views/Shared/_Layout.cshtml";
     Entities db = new Entities();
     var listSinhVien = db.SinhViens.ToList();
 }
-@*<style>
-    body {
-        font-family: 'Open Sans', sans-serif;
-        font-weight: 300;
-        line-height: 1.42em;
-        color: #A7A1AE;
-        background-color: #1F2739;
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+    .letter {
+        color:#fff;
+        font-size:6em;
+        margin:0;
+        padding:0;
+        transition: .5s;
+        transform:perspective(1000px) rotateX(35deg);
     }
-
-    h1 {
-        font-size: 3em;
-        font-weight: 300;
-        line-height: 1em;
-        text-align: center;
-        color: #4DC3FA;
-    }
-
-    h2 {
-        font-size: 1em;
-        font-weight: 300;
-        text-align: center;
-        display: block;
-        line-height: 1em;
-        padding-bottom: 2em;
-        color: #FB667A;
-    }
-
-        h2 a {
-            font-weight: 700;
-            text-transform: uppercase;
-            color: #FB667A;
-            text-decoration: none;
+        .letter .char1,
+        .letter .char2,
+        .letter .char3,
+        .letter .char4,
+        .letter .char5,
+        .letter .char6,
+        .letter .char7,
+        .letter .char8,
+        .letter .char9,
+        .letter .char10,
+        .letter .char11 {
+            display: inline-block;
+            padding: 0 10px;
+            transition: .5s;
+            text-shadow: 0 5px 2px rgba(0,0,0,.1);
+            box-shadow: 10px 50px 20px rgba(0,0,0,.1);
+            filter: blur(.5px);
         }
-
-    .blue {
-        color: #185875;
-    }
-
-    .yellow {
-        color: #FFF842;
-    }
-
-    .container th h1 {
-        font-weight: bold;
-        font-size: 1em;
-        text-align: left;
-        color: #185875;
-    }
-
-    .container td {
-        font-weight: normal;
-        font-size: 1em;
-        -webkit-box-shadow: 0 2px 2px -2px #0E1119;
-        -moz-box-shadow: 0 2px 2px -2px #0E1119;
-        box-shadow: 0 2px 2px -2px #0E1119;
-    }
-
-    .container {
-        text-align: left;
-        overflow: hidden;
-        width: 80%;
-        margin: 0 auto;
-        display: table;
-        padding: 0 0 8em 0;
-    }
-
-        .container td, .container th {
-            padding-bottom: 2%;
-            padding-top: 2%;
-            padding-left: 2%;
+        .letter .char1,
+        .letter .char3,
+        .letter .char5,
+        .letter .char7,
+        .letter .char9,
+        .letter .char11 {
+            background: #172783;
+            transform: skewY(-15deg);
         }
-
-        /* Background-color of the odd rows */
-        .container tr:nth-child(odd) {
-            background-color: #323C50;
+        .letter .char2,
+        .letter .char4,
+        .letter .char6,
+        .letter .char8,
+        .letter .char10 {
+            background: #101b5a;
+            transform: skewY(15deg);
         }
-
-        /* Background-color of the even rows */
-        .container tr:nth-child(even) {
-            background-color: #2C3446;
+        .letter:hover .char1,
+        .letter:hover .char2,
+        .letter:hover .char3,
+        .letter:hover .char4,
+        .letter:hover .char5,
+        .letter:hover .char6,
+        .letter:hover .char7,
+        .letter:hover .char8,
+        .letter:hover .char9,
+        .letter:hover .char10,
+        .letter:hover .char11 {
+            background: #172783;
+            transform: skewY(0deg);
+            filter: blur(0);
+            box-shadow: 0 2px 2px rgba(0,0,0,,.1);
         }
-
-        .container th {
-            background-color: #1F2739;
+        .letter:hover{
+            transform:perspective(0px) rotateX(35deg)
         }
-
-        .container td:first-child {
-            color: #FB667A;
-        }
-
-        .container tr:hover {
-            background-color: #464A52;
-            -webkit-box-shadow: 0 6px 6px -6px #0E1119;
-            -moz-box-shadow: 0 6px 6px -6px #0E1119;
-            box-shadow: 0 6px 6px -6px #0E1119;
-        }
-
-        .container td:hover {
-            background-color: #FFF842;
-            color: #403E10;
-            font-weight: bold;
-            box-shadow: #7F7C21 -1px 1px, #7F7C21 -2px 2px, #7F7C21 -3px 3px, #7F7C21 -4px 4px, #7F7C21 -5px 5px, #7F7C21 -6px 6px;
-            transform: translate3d(6px, -6px, 0);
-            transition-delay: 0s;
-            transition-duration: 0.4s;
-            transition-property: all;
-            transition-timing-function: line;
-        }
-</style>*@
-
-<h1><span class="blue">&lt;</span>Table<span class="blue">&gt;</span><span class="yellow">THỰC TẬP SINH</span></h1>
-<h2>Created with love by <a href="http://pablogarciafernandez.com" target="_blank">Pablo García Fernández</a></h2>
+</style>
+<script>
+    $(document).ready(function () {
+        $(".letter").lettering();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#fffffff').DataTable();
+    });
+</script>
+<h1 class="letter">XemSinhVien</h1>
+<h1 id="xemdanhsachfit2"><span class="blue">&lt;</span>FitText.js<span class="blue">&gt;</span><span class="yellow">THỰC TẬP SINH</span></h1>
+<h2 id="fittext2">Created with love by <a href="http://pablogarciafernandez.com" target="_blank">Pablo García Fernández</a></h2>
 <a class="w3-button w3-pink w3-center" href="@Url.Action("Index","HuanLuyenVien")">Trở về</a>
 <div class="card-body">
-    <div class="">
-        Tìm kiếm
-        <input type="text" class="w3-input w3-border" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
-        
-    </div>
-    <table id="myTable" class="container">
+    <table id="fffffff" class="w3-container container">
         <thead>
             <tr>
                 <th>Họ Tên</th>
@@ -146,7 +107,24 @@
                     <td>@item.DiemTOEFL Điểm</td>
                     <td>@item.NgonNguLapTrinh</td>
                     <td>@item.DiemThiTracNghiem Điểm</td>
-                    <td>@item.TinhTrangSinhVien</td>
+                    @if (item.TinhTrangSinhVien == "Đã Ký Hợp Đồng")
+                        {
+                            <td class="w3-text-green">
+                                @Html.DisplayFor(modelItem => item.TinhTrangSinhVien)
+                            </td>
+                        }
+                        else if (item.TinhTrangSinhVien == "Đã Nhận Chứng Chỉ")
+                        {
+                            <td class="w3-text-yellow">
+                                @Html.DisplayFor(modelItem => item.TinhTrangSinhVien)
+                            </td>
+                        }
+                        else
+                        {
+                            <td class="">
+                                @Html.DisplayFor(modelItem => item.TinhTrangSinhVien)
+                            </td>
+                        }
                 </tr>
             }
         </tbody>
@@ -163,22 +141,3 @@
         </tfoot>
     </table>
 </div>
-<script>
-    function myFunction() {
-        var input, filter, table, tr, td, i;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[0];
-            if (td) {
-                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                } else {
-                    tr[i].style.display = "none";
-                }
-            }
-        }
-    }
-</script>

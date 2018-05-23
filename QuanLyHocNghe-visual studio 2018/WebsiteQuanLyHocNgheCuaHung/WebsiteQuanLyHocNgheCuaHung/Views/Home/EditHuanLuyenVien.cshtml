@@ -2,8 +2,11 @@
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    List<string> listBoPhan = new List<string>();
+    listBoPhan.Add("C#");
+    listBoPhan.Add("Java script");
 }
-<h2>Edit</h2>
+<h2 id="xemdanhsachfit2">Edit</h2>
 
 @using (Html.BeginForm())
 {
@@ -13,7 +16,7 @@
         <h4>HuanLuyenVien</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
+        <div class="form-group w3-hide">
             @Html.LabelFor(model => model.IDHuanLuyenVien, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.IDHuanLuyenVien, new { htmlAttributes = new { @class = "w3-input w3-border" } })
@@ -34,13 +37,7 @@
                 @Html.ValidationMessageFor(model => model.DienThoai, "", new { @class = "text-danger" })
             </div>
         </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.BoPhan, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BoPhan, new { htmlAttributes = new { @class = "w3-input w3-border" } })
-                @Html.ValidationMessageFor(model => model.BoPhan, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                @Html.HiddenFor(model => model.BoPhan)
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="w3-button w3-yellow" />

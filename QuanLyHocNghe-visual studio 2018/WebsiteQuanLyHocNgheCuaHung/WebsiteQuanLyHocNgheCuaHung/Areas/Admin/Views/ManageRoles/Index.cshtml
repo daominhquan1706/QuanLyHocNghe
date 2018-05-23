@@ -21,13 +21,17 @@
             </thead>
             <tbody>
                 @foreach (var item in Model)
-            {
-                <tr>
-                    <td>@item.Id</td>
-                    <td>@item.Name</td>
-                    <td>@Html.ActionLink("Xóa", "Delete", new { id = item.Id })</td>
-                </tr>
-        }
+                 {
+                            if(item.Name!="Admin")
+                            {
+                                <tr>
+                                    <td>@item.Id</td>
+                                    <td>@item.Name</td>
+                                    <td>@Html.ActionLink("Xóa", "Delete", new { id = item.Id })</td>
+                                </tr>
+                            }
+                
+                 }
             </tbody>
         </table>
     </div>

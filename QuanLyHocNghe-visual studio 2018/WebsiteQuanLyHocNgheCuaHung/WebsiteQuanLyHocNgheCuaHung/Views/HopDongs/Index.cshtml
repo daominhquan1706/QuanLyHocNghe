@@ -5,45 +5,53 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     Entities db = new Entities();
 }
-
-<h2>Index</h2>
-<a class="w3-button w3-yellow" href="@Url.Action("Create")">Create New</a>
-<table class="container">
-    <tr>
-        <th>
-            Sinh Viên
-        </th>
-        <th>
-            Huấn Luyện Viên
-        </th>
-        <th>
-            Ngày Tạo
-        </th>
-        <th>
-            Ngày Kết Thúc
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SinhVien.HoTen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HuanLuyenVien.HoTen)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayTaoHopDong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NgayKetThucHopDong)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.IDSinhVien}) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.IDSinhVien})
-        </td>
-    </tr>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#fffffff').DataTable();
+    });
+</script>
+<h2 id="xemdanhsachfit2">Index</h2>
+<a class="w3-button w3-yellow" href="@Url.Action("Create")">Tạo Hợp Đồng</a>
+<table id="fffffff" class="w3-container container">
+    <thead>
+        <tr>
+            <th>
+                Sinh Viên
+            </th>
+            <th>
+                Huấn Luyện Viên
+            </th>
+            <th>
+                Ngày Tạo
+            </th>
+            <th>
+                Ngày Kết Thúc
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.SinhVien.HoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HuanLuyenVien.HoTen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayTaoHopDong)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NgayKetThucHopDong)
+            </td>
+            <td>
+                @Html.ActionLink("Details", "Details", new { id = item.IDSinhVien }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IDSinhVien })
+            </td>
+        </tr>
 }
-
+    </tbody>
 </table>

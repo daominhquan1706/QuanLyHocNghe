@@ -7,18 +7,12 @@
     <link rel="stylesheet" href="~/Content/adminlte.min.css">
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <style>
-        body {
-            font: normal 13px/20px Arial, Helvetica, sans-serif;
-            word-wrap: break-word;
-            color: #eee;
-            background: #353535;
-        }
-    </style>
-    <style>
+
         body {
             font-family: 'Open Sans', sans-serif;
             font-weight: 300;
@@ -129,28 +123,54 @@
     </style>
 </head>
 <body>
-
     <!-- Navbar -->
     <div class="w3-top">
         <div class="w3-bar w3-theme-d2 w3-left-align w3-black">
+            <a class="w3-bar-item w3-button w3-padding-large w3-hide-medium w3-hide-large w3-right" href="javascript:void(0)" onclick="myFunction()" title="Toggle Navigation Menu"><i class="fa fa-bars"></i></a>
             <a href="@Url.Action("Index", "Home", new { Area = "" })" class="w3-bar-item w3-button w3-deep-purple">
                 <i class="fa fa-home w3-margin-right"></i>School
             </a>
             @Html.Partial("_LoginPartial")
         </div>
-   </div>
-        <div class="container body-content">
+    </div>
+    <!-- Navbar on small screens -->
+    
 
-            @RenderBody()
-            <hr />
-            <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application - Hệ thống quản lý học nghề cho công ty</p>
-            </footer>
-        </div>
-
-        @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
-
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application - Hệ thống quản lý học nghề cho công ty</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
 </body>
 </html>
+
+
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="~/Content/FitText/jquery.fittext.js"></script>
+<script src="~/Content/Lettering/jquery.lettering.js"></script>
+<script type="text/javascript">
+    $("#xemdanhsachfit1").fitText(1);
+    $("#xemdanhsachfit2").fitText(2);
+    $("#logintextfit").fitText(1, { minFontSize: '50px', maxFontSize: '75px' });
+
+    $("#huanluyenvienfittext1").fitText(3);
+    $("#huanluyenvienfittext2").fitText(3);
+
+    $("#thuctapsinhfittext1").fitText(3);
+    $("#thuctapsinhfittext2").fitText(3);
+</script>
+<script>
+    function myFunction() {
+        var x = document.getElementById("navSmallScreen");
+        if (x.className.indexOf("w3-show") == -1) {
+            x.className += " w3-show";
+        } else {
+            x.className = x.className.replace(" w3-show", "");
+        }
+    }
+</script>

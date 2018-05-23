@@ -12,9 +12,14 @@
     }
     var id = ViewData["id"].ToString();
     var dbSinhVien = db.SinhViens.Single(t=>t.IDSinhVien.Equals(id));
+    List<string> listTrinhDoHocVan = new List<string>();
+    listTrinhDoHocVan.Add("Đại Học");
+    listTrinhDoHocVan.Add("Trung Học Phổ Thông");
+    listTrinhDoHocVan.Add("Trung Học Cơ Sở");
+    listTrinhDoHocVan.Add("Tiểu Học");
 }
 <a class="w3-button w3-deep-purple" href="@Url.Action("Index","SinhVien",new {Area="SinhVien" })">Trở về</a>
-<h2>Edit</h2>
+<h2 id="xemdanhsachfit2">Edit</h2>
 
 @using (Html.BeginForm())
 {
@@ -69,7 +74,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.TrinhDoHocVan, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.TrinhDoHocVan, new { htmlAttributes = new { @class = "w3-input w3-border" } })
+                @Html.DropDownList("TrinhDoHocVan", new SelectList(listTrinhDoHocVan), new { @class = "w3-input w3-border", @required = "required" })
                 @Html.ValidationMessageFor(model => model.TrinhDoHocVan, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -13,6 +13,7 @@
     {
         listSinhVien.Add(db.SinhViens.Single(r => r.IDSinhVien.Equals(item.IDSinhVien)));
     }
+    
 }
     <style>
         body {
@@ -22,18 +23,17 @@
             background: #353535;
         }
     </style>
+    <div class="">
+        <h1 id="huanluyenvienfittext1"><span class="blue">&lt;</span>FitText.js<span class="blue">&gt;</span><span class="yellow">Huấn luyện viên</span></h1>
+        <h2 id="huanluyenvienfittext2">Chào Huấn luyện viên <a href="">@dbHLV.HoTen</a></h2>
+    </div>
 <header class="w3-display-container w3-wide w3-padding-small" id="home">
     <img class="w3-image" src="~/Content/image/coachbanner.png" alt="Coach's Banner" width="1600" height="1060">
-    <div class="w3-display-left w3-padding-large">
-        <h1 class="w3-text-white">Trang Chủ</h1>
-        <h1 class="w3-jumbo w3-hide-small"><b>Huấn luyện viên</b></h1>
-        <h6><a class="w3-button w3-deep-purple w3-padding-large w3-large" href="@Url.Action("XemSinhVien","HuanLuyenVien")">DANH SÁCH SINH VIÊN &raquo;</a></h6>
-        <h6><a class="w3-button w3-deep-purple w3-padding-large w3-large" href="@Url.Action("EditHuanLuyenVien","Home",new { Area="", id= dbHLV.IDHuanLuyenVien})">SỬA THÔNG TIN &raquo;</a></h6>
-    </div>
+    
 </header>
 <div class="w3-row-padding w3-margin-top">
     <div class="w3-half">
-        <div class="w3-card-4 card-default w3-deep-purple ">
+        <div class="w3-card-4 card-default w3-deep-purple  ">
             <div class="card-header">
                 <h3 class="card-title "><i class="fa fa-users"></i> Thông tin</h3>
             </div>
@@ -41,8 +41,10 @@
                 <p class="w3-center w3-margin-top"><img src="~/Content/image/avatargiangvien.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
                 <h4 class="w3-center">@dbHLV.HoTen</h4>
                 <hr>
-                <p class="w3-xxlarge"><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i> <text>@dbHLV.DienThoai</text></p>
-                <p class="w3-xxlarge"><i class="fa fa-check-square-o fa-fw w3-margin-right w3-text-theme"></i> <text>@dbHLV.BoPhan</text></p>
+                <p class="w3-xlarge"><i class="fa fa-address-book fa-fw w3-margin-right w3-text-theme"></i> <text>@dbHLV.DienThoai</text></p>
+                <p class="w3-xlarge"><i class="fa fa-check-square-o fa-fw w3-margin-right w3-text-theme"></i> <text>@dbHLV.BoPhan</text></p>
+                <h6><a class="w3-button w3-blue w3-padding-large w3-large" href="@Url.Action("EditHuanLuyenVien","Home",new { Area="", id= dbHLV.IDHuanLuyenVien})">SỬA THÔNG TIN &raquo;</a></h6>
+                <h6><a class="w3-button w3-deep-purple w3-padding-large w3-large" href="@Url.Action("XemSinhVien","HuanLuyenVien")">DANH SÁCH SINH VIÊN &raquo;</a></h6>
             </div>
         </div>
     </div>
@@ -57,6 +59,7 @@
                 <table id="myTable" class="contacts-list w3-table">
                     @foreach (var item in listSinhVien)
                     {
+                        bool DaNhanChungChi = true;
                             <tr>
                                 <td>
                                     <div class=" w3-hover-text-black" style="height:70px">
@@ -66,9 +69,27 @@
                                                     @item.HoTen
                                                 </span>
                                                 <span class="contacts-list-msg">
-                                                    <small class="contacts-list-date float-right w3-text-deep-purple"><span class="glyphicon glyphicon-ok"></span></small>
+                                                    
                                                     <a href="@Url.Action("ChiTietSinhVien","HuanLuyenVien",new { id=item.IDSinhVien })" class="w3-button w3-deep-purple w3-small">Chi tiết</a>
                                                     <a href="@Url.Action("ChonSinhVienChatBox","HuanLuyenVien", new { Area="HuanLuyenVien", nguoinhan = db.AspNetUsers.Single(t=>t.Id.Equals(item.IDSinhVien)).UserName })" class="w3-button w3-deep-purple w3-small">Nhắn tin</a>
+                                                    @foreach (var itemchungchi in db.ChungChiSinhViens)
+                                                    {
+                                                        if(itemchungchi.IDSinhVien.ToString()==item.IDSinhVien.ToString())
+                                                        {
+                                                            DaNhanChungChi=false;
+                                                        }
+                                                        
+
+                                                    }
+                                                    @if(DaNhanChungChi==true)
+                                                        {
+                                                            <a href="@Url.Action("TraoChungChiChoSinhVien","Home",new { Area = "", id = item.IDSinhVien, tenchungchi = item.NgonNguLapTrinh })" class="w3-button w3-deep-purple w3-small">Trao Chứng Chỉ</a>
+                                                    }
+                                                    else
+                                                    {
+                                                        <small class="w3-large contacts-list-date float-right w3-text-blue">đã hoàn thành chứng chỉ<span class="glyphicon glyphicon-ok"></span></small>
+                                                    }
+
                                                 </span>
                                             </div>
                                     </div>

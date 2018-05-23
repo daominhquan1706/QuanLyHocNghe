@@ -22,14 +22,14 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
             {
                 if(item.IDSinhVien == userid)
                 {
-                    return RedirectToAction("Index", "SinhVien");
+                    return RedirectToAction("Index", "SinhVien",new { Area="SinhVien" });
                 }
             }
             foreach (var item in db.HuanLuyenViens)
             {
                 if (item.IDHuanLuyenVien == userid)
                 {
-                    return RedirectToAction("Index", "HuanLuyenVien");
+                    return RedirectToAction("Index", "HuanLuyenVien", new { Area = "HuanLuyenVien" });
                 }
             }
             if (User.Identity.GetUserName()=="admin@gmail.com")
@@ -43,21 +43,7 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
         {
             // chuyển user về đúng trang theo role , tránh lỗi
             string userid = User.Identity.GetUserId();
-            foreach (var item in db.SinhViens)
-            {
-                if (item.IDSinhVien == userid)
-                {
-                    return RedirectToAction("Index", "SinhVien");
-                }
-            }
-            foreach (var item in db.HuanLuyenViens)
-            {
-                if (item.IDHuanLuyenVien == userid)
-                {
-                    return RedirectToAction("Index", "HuanLuyenVien");
-                }
-            }
-
+           
             var listuser = db.SinhViens.ToList();
             var id = db.AspNetUsers.Single(f => f.UserName.Equals(Username)).Id;
             if(listuser!=null)
@@ -78,44 +64,16 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
         {
             if (ModelState.IsValid)
             {
-                string userid = User.Identity.GetUserId();
-                foreach (var item in db.SinhViens)
-                {
-                    if (item.IDSinhVien == userid)
-                    {
-                        return RedirectToAction("Index", "SinhVien");
-                    }
-                }
-                foreach (var item in db.HuanLuyenViens)
-                {
-                    if (item.IDHuanLuyenVien == userid)
-                    {
-                        return RedirectToAction("Index", "HuanLuyenVien");
-                    }
-                }
+                
                 db.SinhViens.Add(sinhVien);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","SinhVien",new { area ="SinhVien" });
             }
             return View(sinhVien);
         }
         public ActionResult DangKyHuanLuyenVien(string Username)
         {
-            string userid = User.Identity.GetUserId();
-            foreach (var item in db.SinhViens)
-            {
-                if (item.IDSinhVien == userid)
-                {
-                    return RedirectToAction("Index", "SinhVien");
-                }
-            }
-            foreach (var item in db.HuanLuyenViens)
-            {
-                if (item.IDHuanLuyenVien == userid)
-                {
-                    return RedirectToAction("Index", "HuanLuyenVien");
-                }
-            }
+            
             var listuser = db.HuanLuyenViens.ToList();
             var id = db.AspNetUsers.Single(f => f.UserName.Equals(Username)).Id;
             if (listuser != null)
@@ -136,16 +94,10 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
         {
             if (ModelState.IsValid)
             {
-                foreach (var item in db.HuanLuyenViens)
-                {
-                    if (item.IDHuanLuyenVien == huanLuyenVien.IDHuanLuyenVien)
-                    {
-                        return RedirectToAction("Index");
-                    }
-                }
+                
                 db.HuanLuyenViens.Add(huanLuyenVien);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index","HuanLuyenVien",new { Area ="HuanLuyenVien" });
             }
             return View(huanLuyenVien);
         }
@@ -210,6 +162,40 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
             ViewBag.IDHuanLuyenVien = new SelectList(db.AspNetUsers, "Id", "Email", huanLuyenVien.IDHuanLuyenVien);
             return View(huanLuyenVien);
         }
+        // GET: ChungChiSinhViens/Create
+        public ActionResult TraoChungChiChoSinhVien(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            SinhVien sinhvien = db.SinhViens.Find(id);
+            if (sinhvien == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.MaChungChi = new SelectList(db.ChungChis, "MaChungChi", "TenChungChi");
+            ViewData["idsinhvien"] = sinhvien.IDSinhVien;
+            return View();
+        }
 
+        // POST: ChungChiSinhViens/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult TraoChungChiChoSinhVien([Bind(Include = "MaChungChiSinhVien,IDSinhVien,MaChungChi,NgayNhanChungChi")] ChungChiSinhVien chungChiSinhVien)
+        {
+            if (ModelState.IsValid)
+            {
+                db.ChungChiSinhViens.Add(chungChiSinhVien);
+                db.SaveChanges();
+                return RedirectToAction("Index","HuanLuyenVien",new { Area=""});
+            }
+
+            ViewBag.MaChungChi = new SelectList(db.ChungChis, "MaChungChi", "TenChungChi", chungChiSinhVien.MaChungChi);
+            ViewBag.IDSinhVien = new SelectList(db.SinhViens, "IDSinhVien", "HoTen", chungChiSinhVien.IDSinhVien);
+            return View(chungChiSinhVien);
+        }
     }
 }

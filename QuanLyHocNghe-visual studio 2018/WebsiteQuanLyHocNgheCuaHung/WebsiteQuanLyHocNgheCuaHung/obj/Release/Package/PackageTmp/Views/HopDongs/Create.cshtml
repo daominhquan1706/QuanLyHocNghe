@@ -14,13 +14,12 @@
             {
                 listSinhVien.Single(r => r.IDSinhVien.Equals(itemsinhvien.IDSinhVien)).HoTen = "";
                 listSinhVien.Single(r => r.IDSinhVien.Equals(itemsinhvien.IDSinhVien)).IDSinhVien = "";
-
             }
         }
     }
     foreach(var item in listSinhVien)
     {
-        if(item.IDSinhVien !="")
+        if(item.IDSinhVien !="" && item.DiemThiTracNghiem!=null)
         {
             listSinhVienChuaCoHopDong.Add(item);
         }
@@ -29,7 +28,7 @@
 
 }
 
-<h2>Create</h2>
+<h2 id="xemdanhsachfit2">Create</h2>
 
 
 @using (Html.BeginForm()) 

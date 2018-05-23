@@ -6,51 +6,70 @@
 }
 
 <h2>Index</h2>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#fffffff').DataTable();
+    });
+</script>
 @*<p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
-<table class="container">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.MSSV)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.HoTen)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TinhTrangSinhVien)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.MSSV)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HoTen)
-        </td>
-        @if (item.TinhTrangSinhVien == "Đã Ký Hợp Đồng")
+<table id="fffffff" class="w3-container container">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MSSV)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.HoTen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TinhTrangSinhVien)
+            </th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
         {
-            <td class="w3-text-green">
-                @Html.DisplayFor(modelItem => item.TinhTrangSinhVien)
-            </td>
+            <tr>
+                <td>
+                    <text>15DH10</text>@Html.DisplayFor(modelItem => item.MSSV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HoTen)
+                </td>
+                @if (item.TinhTrangSinhVien == "Đã Ký Hợp Đồng")
+                {
+                    <td class="w3-text-green">
+                        @Html.DisplayFor(modelItem => item.TinhTrangSinhVien)
+                    </td>
+                }
+                else if (item.TinhTrangSinhVien == "Đã Nhận Chứng Chỉ")
+                {
+                    <td class="w3-text-yellow">
+                        @Html.DisplayFor(modelItem => item.TinhTrangSinhVien)
+                    </td>
+                }
+                else
+                {
+                    <td class="">
+                        @Html.DisplayFor(modelItem => item.TinhTrangSinhVien)
+                    </td>
+                }
+                    <td class="w3-center" style="max-width:10px">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.IDSinhVien })
+                    </td>
+                    <td class="w3-center" style="max-width:10px">
+                        @Html.ActionLink("Details", "Details", new { id = item.IDSinhVien }) 
+                    </td>
+                    <td class="w3-center" style="max-width:10px">
+                        @Html.ActionLink("Delete", "Delete", new { id = item.IDSinhVien })
+                    </td>
+            </tr>
         }
-        else
-        {
-            <td class="">
-                @Html.DisplayFor(modelItem => item.TinhTrangSinhVien)
-            </td>
-        }
-
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.IDSinhVien }) |
-            @Html.ActionLink("Details", "Details", new { id=item.IDSinhVien }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.IDSinhVien })
-        </td>
-    </tr>
-}
-
+    </tbody>
 </table>
