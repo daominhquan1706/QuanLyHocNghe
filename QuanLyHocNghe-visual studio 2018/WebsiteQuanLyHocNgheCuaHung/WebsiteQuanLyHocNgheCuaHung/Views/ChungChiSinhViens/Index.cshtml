@@ -4,10 +4,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<a href="@Url.Action("Index","Admin",new { area="Admin"})" class="w3-button w3-deep-purple">Trở Về</a>
 <h2>Index</h2>
 
 <a href="@Url.Action("Create", "ChungChiSinhViens")" class="w3-button w3-yellow">Gán Chứng Chỉ <i class="fa fa-arrow-right"></i></a>
+<a href="@Url.Action("Index", "ChungChis")" class="w3-button w3-pink">Danh Sách Chứng Chỉ <i class="fa fa-arrow-right"></i></a>
 <table class="container">
     <tr>
         <th>

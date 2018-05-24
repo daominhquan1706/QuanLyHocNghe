@@ -34,7 +34,7 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
             }
             if (User.Identity.GetUserName()=="admin@gmail.com")
             {
-                return RedirectToAction("Index", "Admin");
+                return RedirectToAction("Index", "Admin", new { Area = "Admin" });
             }
             return View();
         }
@@ -52,7 +52,7 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
                 {
                     if(item.IDSinhVien==id)
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Index", "Home", new { Area = "" });
                     }
                 }
             }
@@ -67,22 +67,22 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
                 
                 db.SinhViens.Add(sinhVien);
                 db.SaveChanges();
-                return RedirectToAction("Index","SinhVien",new { area ="SinhVien" });
+                return RedirectToAction("Index","Home",new { Area ="" });
             }
             return View(sinhVien);
         }
         public ActionResult DangKyHuanLuyenVien(string Username)
         {
             
-            var listuser = db.HuanLuyenViens.ToList();
+            var listHLV = db.HuanLuyenViens.ToList();
             var id = db.AspNetUsers.Single(f => f.UserName.Equals(Username)).Id;
-            if (listuser != null)
+            if (listHLV != null)
             {
-                foreach (var item in listuser)
+                foreach (var item in listHLV)
                 {
                     if (item.IDHuanLuyenVien == id)
                     {
-                        return RedirectToAction("Index");
+                        return RedirectToAction("Index", "Home", new { Area = "" });
                     }
                 }
             }
@@ -94,10 +94,9 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
         {
             if (ModelState.IsValid)
             {
-                
                 db.HuanLuyenViens.Add(huanLuyenVien);
                 db.SaveChanges();
-                return RedirectToAction("Index","HuanLuyenVien",new { Area ="HuanLuyenVien" });
+                return RedirectToAction("Index", "Home", new { Area = "" });
             }
             return View(huanLuyenVien);
         }

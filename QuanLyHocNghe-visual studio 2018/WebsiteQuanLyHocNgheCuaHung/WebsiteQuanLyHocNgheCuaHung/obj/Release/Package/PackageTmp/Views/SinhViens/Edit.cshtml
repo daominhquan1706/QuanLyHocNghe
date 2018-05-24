@@ -88,14 +88,7 @@
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.TinhTrangSinhVien, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownListFor(model => model.TinhTrangSinhVien, new SelectList(listTinhTrangSV), new { @class = "w3-input w3-border" })
-                @Html.ValidationMessageFor(model => model.TinhTrangSinhVien, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
+        @Html.HiddenFor(model => model.TinhTrangSinhVien)
         <div class="form-group">
             @Html.LabelFor(model => model.DiemThiTracNghiem, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

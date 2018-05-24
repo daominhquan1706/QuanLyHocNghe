@@ -10,9 +10,6 @@
     });
 </script>
 <h2 id="xemdanhsachfit2">Index</h2>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table id="fffffff" class="w3-container container">
     <thead>
         <tr>
@@ -47,11 +44,11 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.AspNetUser.Email)
                 </td>
-                @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.IDHuanLuyenVien }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.IDHuanLuyenVien }) |
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.IDHuanLuyenVien }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.IDHuanLuyenVien }) |*@
                     @Html.ActionLink("Delete", "Delete", new { id = item.IDHuanLuyenVien })
-                </td>*@
+                </td>
             </tr>
         }
     </tbody>

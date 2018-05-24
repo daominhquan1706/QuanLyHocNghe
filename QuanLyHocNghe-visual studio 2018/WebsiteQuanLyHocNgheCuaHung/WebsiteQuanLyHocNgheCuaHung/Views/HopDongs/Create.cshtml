@@ -1,31 +1,7 @@
 ﻿@model WebsiteQuanLyHocNgheCuaHung.Models.HopDong
-@using WebsiteQuanLyHocNgheCuaHung.Models
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    Entities db = new Entities();
-    var listSinhVien = db.SinhViens;
-    List<SinhVien> listSinhVienChuaCoHopDong = new List<SinhVien>();
-    foreach(var itemhopdong in db.HopDongs)
-    {
-        foreach(var itemsinhvien in listSinhVien)
-        {
-            if(itemhopdong.IDSinhVien==itemsinhvien.IDSinhVien)
-            {
-                listSinhVien.Single(r => r.IDSinhVien.Equals(itemsinhvien.IDSinhVien)).HoTen = "";
-                listSinhVien.Single(r => r.IDSinhVien.Equals(itemsinhvien.IDSinhVien)).IDSinhVien = "";
-            }
-        }
-    }
-    foreach(var item in listSinhVien)
-    {
-        if(item.IDSinhVien !="" && item.DiemThiTracNghiem!=null)
-        {
-            listSinhVienChuaCoHopDong.Add(item);
-        }
-    }
-
-
 }
 
 <h2 id="xemdanhsachfit2">Create</h2>
@@ -42,7 +18,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IDSinhVien, "IDSinhVien", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("IDSinhVien", new SelectList(listSinhVienChuaCoHopDong, "IDSinhVien","HoTen"), htmlAttributes: new { @class = "w3-input w3-border" ,@required="required" })
+                @Html.DropDownList("IDSinhVien",null, htmlAttributes: new { @class = "w3-input w3-border" ,@required="required" })
                 @Html.ValidationMessageFor(model => model.IDSinhVien, "", new { @class = "text-danger" })
             </div>
         </div>

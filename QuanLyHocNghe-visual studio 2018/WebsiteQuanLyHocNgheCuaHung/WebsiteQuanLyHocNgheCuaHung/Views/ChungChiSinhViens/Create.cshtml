@@ -1,8 +1,9 @@
 ﻿@model WebsiteQuanLyHocNgheCuaHung.Models.ChungChiSinhVien
-
+@using WebsiteQuanLyHocNgheCuaHung.Models
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    Entities db = new Entities();
 }
 
 <h2>Create</h2>
@@ -21,14 +22,6 @@
             <div class="col-md-10">
                 @Html.DropDownList("IDSinhVien", null, htmlAttributes: new { @class = "w3-input w3-border" })
                 @Html.ValidationMessageFor(model => model.IDSinhVien, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MaChungChi, "MaChungChi", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("MaChungChi", null, htmlAttributes: new { @class = "w3-input w3-border" })
-                @Html.ValidationMessageFor(model => model.MaChungChi, "", new { @class = "text-danger" })
             </div>
         </div>
 

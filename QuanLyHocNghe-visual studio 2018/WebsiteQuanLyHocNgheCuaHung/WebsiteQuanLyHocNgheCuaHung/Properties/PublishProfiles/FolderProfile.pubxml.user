@@ -13,13 +13,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/18/2018 10:24:10</publishTime>
     </File>
     <File Include="App_Data/aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334.mdf">
-      <publishTime>05/23/2018 11:21:21</publishTime>
+      <publishTime>05/23/2018 21:41:13</publishTime>
     </File>
     <File Include="App_Data/aspnet-WebsiteQuanLyHocNgheCuaHung-20180509112334_log.ldf">
-      <publishTime>05/23/2018 11:21:21</publishTime>
+      <publishTime>05/23/2018 21:41:13</publishTime>
     </File>
     <File Include="Areas/Admin/Views/Admin/Index.cshtml">
-      <publishTime>05/20/2018 19:57:13</publishTime>
+      <publishTime>05/23/2018 21:38:54</publishTime>
     </File>
     <File Include="Areas/Admin/Views/ManageRoles/Create.cshtml">
       <publishTime>05/19/2018 08:40:14</publishTime>
@@ -343,10 +343,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>09/10/2013 17:28:38</publishTime>
     </File>
     <File Include="bin/WebsiteQuanLyHocNgheCuaHung.dll">
-      <publishTime>05/23/2018 11:21:17</publishTime>
+      <publishTime>05/23/2018 21:42:09</publishTime>
     </File>
     <File Include="bin/WebsiteQuanLyHocNgheCuaHung.pdb">
-      <publishTime>05/23/2018 11:21:17</publishTime>
+      <publishTime>05/23/2018 21:42:09</publishTime>
     </File>
     <File Include="Content/adminlte.min.css">
       <publishTime>05/18/2018 10:24:10</publishTime>
@@ -484,7 +484,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/18/2018 10:24:10</publishTime>
     </File>
     <File Include="Models/Model1.edmx.diagram">
-      <publishTime>05/18/2018 10:24:10</publishTime>
+      <publishTime>05/23/2018 13:40:28</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>05/18/2018 10:24:10</publishTime>
@@ -571,10 +571,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/19/2018 09:24:58</publishTime>
     </File>
     <File Include="Views/ChungChis/Index.cshtml">
-      <publishTime>05/22/2018 22:40:52</publishTime>
+      <publishTime>05/23/2018 18:44:05</publishTime>
     </File>
     <File Include="Views/ChungChiSinhViens/Create.cshtml">
-      <publishTime>05/19/2018 08:49:51</publishTime>
+      <publishTime>05/23/2018 21:22:48</publishTime>
     </File>
     <File Include="Views/ChungChiSinhViens/Delete.cshtml">
       <publishTime>05/18/2018 10:24:10</publishTime>
@@ -586,7 +586,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/19/2018 09:27:34</publishTime>
     </File>
     <File Include="Views/ChungChiSinhViens/Index.cshtml">
-      <publishTime>05/22/2018 22:40:17</publishTime>
+      <publishTime>05/23/2018 21:17:16</publishTime>
     </File>
     <File Include="Views/Home/DangKyHuanLuyenVien.cshtml">
       <publishTime>05/22/2018 22:01:22</publishTime>
@@ -598,7 +598,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2018 11:08:12</publishTime>
     </File>
     <File Include="Views/Home/EditSinhVien.cshtml">
-      <publishTime>05/22/2018 22:47:08</publishTime>
+      <publishTime>05/23/2018 19:04:16</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
       <publishTime>05/22/2018 22:01:40</publishTime>
@@ -607,7 +607,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/23/2018 10:13:14</publishTime>
     </File>
     <File Include="Views/HopDongs/Create.cshtml">
-      <publishTime>05/22/2018 23:39:45</publishTime>
+      <publishTime>05/23/2018 21:29:03</publishTime>
     </File>
     <File Include="Views/HopDongs/Delete.cshtml">
       <publishTime>05/22/2018 22:00:40</publishTime>
@@ -631,7 +631,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/22/2018 22:01:02</publishTime>
     </File>
     <File Include="Views/HuanLuyenViens/Index.cshtml">
-      <publishTime>05/22/2018 22:41:01</publishTime>
+      <publishTime>05/23/2018 20:31:20</publishTime>
     </File>
     <File Include="Views/Manage/AddPhoneNumber.cshtml">
       <publishTime>05/18/2018 10:24:10</publishTime>
@@ -670,13 +670,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/18/2018 10:24:10</publishTime>
     </File>
     <File Include="Views/SinhViens/Details.cshtml">
-      <publishTime>05/18/2018 10:24:10</publishTime>
+      <publishTime>05/23/2018 21:41:00</publishTime>
     </File>
     <File Include="Views/SinhViens/Edit.cshtml">
-      <publishTime>05/22/2018 22:16:13</publishTime>
+      <publishTime>05/23/2018 21:14:34</publishTime>
     </File>
     <File Include="Views/SinhViens/Index.cshtml">
-      <publishTime>05/23/2018 10:21:56</publishTime>
+      <publishTime>05/23/2018 21:40:03</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>05/18/2018 10:24:10</publishTime>
@@ -685,7 +685,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/18/2018 10:24:10</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/23/2018 11:21:22</publishTime>
+      <publishTime>05/23/2018 21:42:10</publishTime>
     </File>
   </ItemGroup>
 </Project>

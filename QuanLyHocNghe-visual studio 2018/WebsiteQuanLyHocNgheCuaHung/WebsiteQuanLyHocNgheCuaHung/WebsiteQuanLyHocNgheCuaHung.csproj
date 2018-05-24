@@ -415,7 +415,6 @@
     <Content Include="Views\ChungChis\Details.cshtml" />
     <Content Include="Views\ChungChis\Edit.cshtml" />
     <Content Include="Views\ChungChis\Index.cshtml" />
-    <Content Include="Views\HuanLuyenViens\Create.cshtml" />
     <Content Include="Views\HuanLuyenViens\Delete.cshtml" />
     <Content Include="Views\HuanLuyenViens\Details.cshtml" />
     <Content Include="Views\HuanLuyenViens\Edit.cshtml" />

@@ -41,7 +41,7 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
         public ActionResult Create()
         {
             ViewBag.IDHuanLuyenVien = new SelectList(db.HuanLuyenViens, "IDHuanLuyenVien", "HoTen");
-            ViewBag.IDSinhVien = new SelectList(db.SinhViens, "IDSinhVien", "HoTen");
+            ViewBag.IDSinhVien = new SelectList(db.SinhViens.Where(r=>r.TinhTrangSinhVien.Equals("Chưa có hợp đồng")), "IDSinhVien", "HoTen");
             return View();
         }
 

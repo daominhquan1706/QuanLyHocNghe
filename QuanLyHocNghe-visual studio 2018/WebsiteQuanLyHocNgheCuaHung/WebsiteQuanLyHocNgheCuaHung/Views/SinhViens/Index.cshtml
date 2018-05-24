@@ -27,7 +27,7 @@
             <th>
                 @Html.DisplayNameFor(model => model.TinhTrangSinhVien)
             </th>
-            <th></th>
+            @*<th></th>*@
             <th></th>
             <th></th>
         </tr>
@@ -60,9 +60,9 @@
                         @Html.DisplayFor(modelItem => item.TinhTrangSinhVien)
                     </td>
                 }
-                    <td class="w3-center" style="max-width:10px">
+                    @*<td class="w3-center" style="max-width:10px">
                         @Html.ActionLink("Edit", "Edit", new { id = item.IDSinhVien })
-                    </td>
+                    </td>*@
                     <td class="w3-center" style="max-width:10px">
                         @Html.ActionLink("Details", "Details", new { id = item.IDSinhVien }) 
                     </td>

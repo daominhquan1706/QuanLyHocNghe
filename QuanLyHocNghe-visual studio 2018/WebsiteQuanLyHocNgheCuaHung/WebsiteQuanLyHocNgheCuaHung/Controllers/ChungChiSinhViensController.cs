@@ -41,7 +41,7 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
         public ActionResult Create()
         {
             ViewBag.MaChungChi = new SelectList(db.ChungChis, "MaChungChi", "TenChungChi");
-            ViewBag.IDSinhVien = new SelectList(db.SinhViens, "IDSinhVien", "HoTen");
+            ViewBag.IDSinhVien = new SelectList(db.SinhViens.Where(f=>f.TinhTrangSinhVien.Equals("Đã Ký Hợp Đồng")), "IDSinhVien", "HoTen");
             return View();
         }
 
@@ -54,6 +54,9 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
         {
             if (ModelState.IsValid)
             {
+                string tenngonngucuasinhvien = db.SinhViens.Single(r => r.IDSinhVien.Equals(chungChiSinhVien.IDSinhVien)).NgonNguLapTrinh;
+                int machungchi = db.ChungChis.Single(r => r.TenChungChi.Equals(tenngonngucuasinhvien)).MaChungChi;
+                chungChiSinhVien.MaChungChi = machungchi;
                 db.ChungChiSinhViens.Add(chungChiSinhVien);
                 db.SaveChanges();
                 return RedirectToAction("Index");
