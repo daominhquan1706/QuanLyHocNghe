@@ -6,19 +6,16 @@
     string nguoinhan = ViewData["nguoinhan"].ToString();
     Entities db = new Entities();
     var idusername = User.Identity.GetUserId();
-    var idnguoinhan = db.AspNetUsers.Single(r=>r.UserName.Equals(nguoinhan)).Id;
+    var idnguoinhan = db.AspNetUsers.Single(r => r.UserName.Equals(nguoinhan)).Id;
 
     var dbNguoinhan = db.SinhViens.Single(t => t.IDSinhVien.Equals(idnguoinhan));
     var dbUsername = db.HuanLuyenViens.Single(t => t.IDHuanLuyenVien.Equals(idusername));
     var time = DateTime.Now;
 }
-
 <h2>ChonSinhVienChatBox</h2>
-
 <div class="w3-margin-bottom">
     <a class="w3-button w3-pink  w3-large" href="@Url.Action("Index","HuanLuyenVien")">Trở về</a>
 </div>
-
 <div class="" style="margin-left:25%;margin-right:25%;min-width:200px">
     <!-- DIRECT CHAT PRIMARY -->
     <div class="w3-card-4 card-primary direct-chat direct-chat-primary demo">
@@ -42,7 +39,7 @@
         <!--chat body-->
         <div class="card-body w3-light-gray">
             <!-- Conversations are loaded here -->
-            <div class="direct-chat-messages w3-large" style="height:600px" id="yourdiv">
+            <div class="direct-chat-messages w3-large" style="height:600px" id="discussion">
                 @foreach (var item in db.ChatBoxes)
                 {
                     if (item.UserID_Gui == idnguoinhan && item.UserID_Nhan == idusername)
@@ -50,7 +47,6 @@
                         <!-- LEFT  -->
                         <div class="direct-chat-msg ">
                             <div class="direct-chat-info clearfix">
-                                <span class="direct-chat-name float-left">@item.AspNetUser.Email</span>
                                 <span class="direct-chat-timestamp float-right">@item.ThoiGian</span>
                             </div>
                             <img class="direct-chat-img" src="~/Content/image/avatar3.png" alt="Message User Image">
@@ -64,7 +60,6 @@
                         <!-- RIGHT-->
                         <div class="direct-chat-msg right">
                             <div class="direct-chat-info clearfix">
-                                <span class="direct-chat-name float-right">@item.AspNetUser.UserName</span>
                                 <span class="direct-chat-timestamp float-left">trả lời @item.AspNetUser1.Email</span>
                             </div>
                             <img class="direct-chat-img" src="~/Content/image/avatargiangvien.png" alt="Message User Image">
@@ -77,24 +72,56 @@
                 }
             </div>
         </div>
-        @using (Html.BeginForm("ChonSinhVienChatBox", "HuanLuyenVien"))
-        {
-            @Html.AntiForgeryToken()
-            <!-- /.card-body -->
-            <div class="card-footer w3-light-gray">
-                <div class="input-group">
-                    <!-- w3-hide -->
-                    <input type="text" name="ThoiGian" value="@time" class="form-control w3-hide">
-                    <input type="text" name="UserID_Gui" value="@idusername" class="form-control w3-hide">
-                    <input type="text" name="UserID_Nhan" value="@idnguoinhan" id="idnguoinhan" class="form-control w3-hide">
-                    <!--end w3-hide -->
-                    <textarea type="text" name="TinNhan" placeholder="Type Message ..." class="form-control" style="max-width:none" required></textarea>
-                    <span class="input-group-append w3-right" style="">
-                        <button type="submit" class="w3-button w3-blue " id="Send">Send</button>
-                    </span>
-                </div>
+        <!-- tin nhắn -->
+        <div class="card-footer">
+            <div class="input-group w3-animate-input">
+                <!-- w3-hide -->
+                <input id="thoigian" type="text" value="@time" class="form-control w3-hide">
+                <input id="nguoigui" type="hidden" value="@idusername" class="form-control">
+                <input id="nguoinhan" type="hidden" value="@idnguoinhan" class="form-control">
+                <!--end w3-hide -->
+                <textarea id="tinnhan" type="text" name="TinNhan" placeholder="Type Message ..." class="form-control" style="max-width:none" required></textarea>
+                <span class="input-group-append" style="">
+                    <input type="button" id="sendmessage" value="Send" class="w3-button w3-blue" />
+                </span>
             </div>
-            <!-- /.card-footer-->
-        }
+        </div>
     </div>
 </div>
+@section scripts {
+    <script>
+        var yourEl = document.getElementById("discussion");
+        yourEl.scrollTop = yourEl.scrollHeight;
+    </script>
+    <script src="~/Scripts/jquery.signalR-2.2.3.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        $(function () {
+            var chat = $.connection.chatHub;
+            chat.client.addNewMessageToPage = function (UserId_Gui, TinNhan, ThoiGian, UserID_Nhan) {
+                //Left
+                //item.UserID_Gui == dbhopdong.IDHuanLuyenVien && item.UserID_Nhan == dbhopdong.IDSinhVien
+                if (UserId_Gui == $('#nguoinhan').val() && UserID_Nhan == $('#nguoigui').val()) {
+                    $('#discussion').append('<div class="direct-chat-msg "><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp float-right">' + htmlEncode(ThoiGian) + '</span></div><img class="direct-chat-img" src="https://i.imgur.com/mrgzBy2.png" alt="Message User Image"><div class="direct-chat-text">' + htmlEncode(TinNhan)+'</div></div>');
+                }
+                else if (UserId_Gui == $('#nguoigui').val() && UserID_Nhan == $('#nguoinhan').val()) {
+                    $('#discussion').append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp float-left">' + htmlEncode(ThoiGian) + '</span></div><img class="direct-chat-img" src="https://i.imgur.com/gb8LIxC.png" alt="Message User Image" /><div class="direct-chat-text">' + htmlEncode(TinNhan) + '</div></div>');
+                }
+                var yourEl = document.getElementById("discussion");
+                yourEl.scrollTop = yourEl.scrollHeight;
+            };
+            $('#tinnhan').focus();
+            $.connection.hub.start().done(function () {
+                $('#sendmessage').click(function () {
+                    chat.server.send($('#nguoigui').val(), $('#tinnhan').val(), $('#thoigian').val(), $('#nguoinhan').val());
+                    $('#tinnhan').val('').focus();
+                    $('#discussion').scrollHeight;
+                });
+            });
+        });
+        function htmlEncode(value) {
+            var encodedValue = $('<div />').text(value).html();
+            return encodedValue;
+        }
+    </script>
+}

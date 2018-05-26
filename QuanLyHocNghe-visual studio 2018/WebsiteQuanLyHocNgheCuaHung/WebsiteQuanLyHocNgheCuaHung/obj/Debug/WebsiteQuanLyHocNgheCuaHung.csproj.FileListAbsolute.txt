@@ -238,3 +238,7 @@ C:\Users\lg\Desktop\GitHub\QuanLyHocNghe\QuanLyHocNghe-visual studio 2018\Websit
 C:\Users\lg\Desktop\GitHub\QuanLyHocNghe\QuanLyHocNghe-visual studio 2018\WebsiteQuanLyHocNgheCuaHung\WebsiteQuanLyHocNgheCuaHung\bin\roslyn\System.Security.Cryptography.Algorithms.dll
 C:\Users\lg\Desktop\GitHub\QuanLyHocNghe\QuanLyHocNghe-visual studio 2018\WebsiteQuanLyHocNgheCuaHung\WebsiteQuanLyHocNgheCuaHung\bin\roslyn\System.Security.Cryptography.Primitives.dll
 C:\Users\lg\Desktop\GitHub\QuanLyHocNghe\QuanLyHocNghe-visual studio 2018\WebsiteQuanLyHocNgheCuaHung\WebsiteQuanLyHocNgheCuaHung\obj\Debug\WebsiteQuanLyHocNgheCuaHung.csprojResolveAssemblyReference.cache
+C:\Users\lg\Desktop\GitHub\QuanLyHocNghe\QuanLyHocNghe-visual studio 2018\WebsiteQuanLyHocNgheCuaHung\WebsiteQuanLyHocNgheCuaHung\bin\Microsoft.AspNet.SignalR.Core.dll
+C:\Users\lg\Desktop\GitHub\QuanLyHocNghe\QuanLyHocNghe-visual studio 2018\WebsiteQuanLyHocNgheCuaHung\WebsiteQuanLyHocNgheCuaHung\bin\Microsoft.AspNet.SignalR.SystemWeb.dll
+C:\Users\lg\Desktop\GitHub\QuanLyHocNghe\QuanLyHocNghe-visual studio 2018\WebsiteQuanLyHocNgheCuaHung\WebsiteQuanLyHocNgheCuaHung\bin\Microsoft.AspNet.SignalR.Core.xml
+C:\Users\lg\Desktop\GitHub\QuanLyHocNghe\QuanLyHocNghe-visual studio 2018\WebsiteQuanLyHocNgheCuaHung\WebsiteQuanLyHocNgheCuaHung\bin\Microsoft.AspNet.SignalR.SystemWeb.xml

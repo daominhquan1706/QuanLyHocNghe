@@ -17,6 +17,26 @@
     listTrinhDoHocVan.Add("Trung Học Phổ Thông");
     listTrinhDoHocVan.Add("Trung Học Cơ Sở");
     listTrinhDoHocVan.Add("Tiểu Học");
+    List<string> listquan = new List<string>();
+    listquan.Add("Quận 1");
+    listquan.Add("Quận 12");
+    listquan.Add("Quận Thủ Đức");
+    listquan.Add("Quận 9");
+    listquan.Add("Quận Gò Vấp");
+    listquan.Add("Quận Bình Thạnh");
+    listquan.Add("Quận Tân Bình");
+    listquan.Add("Quận Tân Phú");
+    listquan.Add("Quận Phú Nhuận");
+    listquan.Add("Quận 2");
+    listquan.Add("Quận 3");
+    listquan.Add("Quận 10");
+    listquan.Add("Quận 11");
+    listquan.Add("Quận 4");
+    listquan.Add("Quận 5");
+    listquan.Add("Quận 6");
+    listquan.Add("Quận 8");
+    listquan.Add("Quận Bình Tân");
+    listquan.Add("Quận 7");
 }
 <a class="w3-button w3-deep-purple" href="@Url.Action("Index","SinhVien",new {Area="SinhVien" })">Trở về</a>
 <h2 id="xemdanhsachfit2">Edit</h2>
@@ -50,7 +70,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.DiaChi, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.DiaChi, new { htmlAttributes = new { @class = "w3-input w3-border" } })
+                @Html.DropDownList("DiaChi", new SelectList(listquan), new { @class = "w3-input w3-border", @required = "required" })
+
                 @Html.ValidationMessageFor(model => model.DiaChi, "", new { @class = "text-danger" })
             </div>
         </div>

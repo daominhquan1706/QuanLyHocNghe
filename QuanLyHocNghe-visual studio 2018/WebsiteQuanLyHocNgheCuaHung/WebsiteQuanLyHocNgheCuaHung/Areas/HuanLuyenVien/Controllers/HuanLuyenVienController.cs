@@ -23,6 +23,7 @@ namespace WebsiteQuanLyHocNgheCuaHung.Areas.HuanLuyenVien.Controllers
         {
             return View();
         }
+        [AllowAnonymous]
         public ActionResult ChonSinhVienChatBox(string nguoinhan)
         {
             if (nguoinhan == null)
@@ -34,6 +35,7 @@ namespace WebsiteQuanLyHocNgheCuaHung.Areas.HuanLuyenVien.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AllowAnonymous]
         public ActionResult ChonSinhVienChatBox([Bind(Include = "Id,UserID_Gui,TinNhan,ThoiGian,UserID_Nhan")] ChatBox chatBox)
         {
             if (ModelState.IsValid)

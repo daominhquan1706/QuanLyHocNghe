@@ -196,5 +196,9 @@ namespace WebsiteQuanLyHocNgheCuaHung.Controllers
             ViewBag.IDSinhVien = new SelectList(db.SinhViens, "IDSinhVien", "HoTen", chungChiSinhVien.IDSinhVien);
             return View(chungChiSinhVien);
         }
+        public ActionResult Chat()
+        {
+            return View();
+        }
     }
 }

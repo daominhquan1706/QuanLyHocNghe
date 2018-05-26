@@ -6,95 +6,216 @@
     string nguoinhan = ViewData["nguoinhan"].ToString();
     Entities db = new Entities();
     var idusername = User.Identity.GetUserId();
-    var idnguoinhan = db.AspNetUsers.Single(r=>r.UserName.Equals(nguoinhan)).Id;
+    var idnguoinhan = db.AspNetUsers.Single(r => r.UserName.Equals(nguoinhan)).Id;
 
     var dbNguoinhan = db.SinhViens.Single(t => t.IDSinhVien.Equals(idnguoinhan));
     var dbUsername = db.HuanLuyenViens.Single(t => t.IDHuanLuyenVien.Equals(idusername));
     var time = DateTime.Now;
+
 }
-
 <h2>ChonSinhVienChatBox</h2>
-
 <div class="w3-margin-bottom">
     <a class="w3-button w3-pink  w3-large" href="@Url.Action("Index","HuanLuyenVien")">Trở về</a>
 </div>
-
-<div class="" style="margin-left:25%;margin-right:25%;min-width:200px">
-    <!-- DIRECT CHAT PRIMARY -->
-    <div class="w3-card-4 card-primary direct-chat direct-chat-primary demo">
-        <!--chat header-->
-        <div class="card-header w3-deep-purple ">
-            <h3 class="card-title" id="demo">@dbNguoinhan.HoTen</h3>
-            @*<div class="card-tools">
-                    <span data-toggle="tooltip" title="3 New Messages" class="badge bg-primary">3</span>
-                    <button type="button" class="btn btn-tool" data-widget="collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts"
-                            data-widget="chat-pane-toggle">
-                        <i class="fa fa-comments"></i>
-                    </button>
-                    <button type="button" class="btn btn-tool" data-widget="remove">
-                        <i class="fa fa-times"></i>
-                    </button>
-                </div>*@
-        </div>
-        <!--chat body-->
-        <div class="card-body w3-light-gray">
-            <!-- Conversations are loaded here -->
-            <div class="direct-chat-messages w3-large" style="height:600px" id="yourdiv">
-                @foreach (var item in db.ChatBoxes)
+<div class="w3-row-padding">
+    <div class="w3-half">
+        <div class="w3-container w3-card-4 w3-white ">
+            <div class="w3-container" style="height:500px">
+                <p class="w3-center w3-margin-top"><img src="~/Content/image/avatar3.png" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+                <h4 class="w3-center">@dbNguoinhan.HoTen</h4>
+                <hr>
+                <p class="w3-large"><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> 15DH10<text>@dbNguoinhan.MSSV</text></p>
+                <p class="w3-large"><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> @dbNguoinhan.DiaChi</p>
+                <p class="w3-large"><i class="fa fa-code w3-margin-right w3-text-theme"></i> @dbNguoinhan.NgonNguLapTrinh</p>
+                <p class="w3-large"><i class="fa fa-graduation-cap w3-margin-right w3-text-theme"></i> @dbNguoinhan.TrinhDoHocVan</p>
+                <p class="w3-large"><i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i> @dbNguoinhan.NgaySinh.Day/@dbNguoinhan.NgaySinh.Month/@dbNguoinhan.NgaySinh.Year</p>
+                @if (dbNguoinhan.DiemThiTracNghiem != null)
                 {
-                    if (item.UserID_Gui == idnguoinhan && item.UserID_Nhan == idusername)
+                    <p class="w3-large"><i class="fa fa-file-text-o fa-fw w3-margin-right w3-text-theme"></i> <text class="w3-hover-text-blue">Kiểm thử đạt <text>@dbNguoinhan.DiemThiTracNghiem</text>đ</text></p>
+                }
+                else
+                {
+                    <p class="w3-large"><i class="fa fa-file-text-o fa-fw w3-margin-right w3-text-theme"></i>Chưa kiểm tra</p>
+                }
+                @if (dbNguoinhan.TinhTrangSinhVien == "Đã Ký Hợp Đồng")
+                {
+                    var dbidHLV = db.HopDongs.Single(r => r.IDSinhVien.Equals(idnguoinhan)).IDHuanLuyenVien;
+                    var dbHuanLuyenVien = db.HuanLuyenViens.Single(t => t.IDHuanLuyenVien.Equals(dbidHLV));
+                    <p class="w3-large"><i class="fa fa-handshake-o fa-fw w3-margin-right w3-text-theme"></i> <text class="w3-hover-text-deep-purple">@dbNguoinhan.TinhTrangSinhVien với @dbHuanLuyenVien.HoTen</text></p>
+                }
+                @if (dbNguoinhan.DiemThiTracNghiem == null)
+                {
+                    if (dbNguoinhan.NgonNguLapTrinh == "C#")
                     {
-                        <!-- LEFT  -->
-                        <div class="direct-chat-msg ">
-                            <div class="direct-chat-info clearfix">
-                                <span class="direct-chat-name float-left">@item.AspNetUser.Email</span>
-                                <span class="direct-chat-timestamp float-right">@item.ThoiGian</span>
-                            </div>
-                            <img class="direct-chat-img" src="~/Content/image/avatar3.png" alt="Message User Image">
-                            <div class="direct-chat-text">
-                                @item.TinNhan
-                            </div>
-                        </div>
+                        <a class="w3-button w3-blue w3-padding-large w3-large" href="@Url.Action("KiemTraTrucTuyenCSharp","SinhVien")">
+                            Kiểm Tra Trực Tuyến C#
+                        </a>
                     }
-                    if (item.UserID_Gui == idusername && item.UserID_Nhan == idnguoinhan)
+                    if (dbNguoinhan.NgonNguLapTrinh == "Java script")
                     {
-                        <!-- RIGHT-->
-                        <div class="direct-chat-msg right">
-                            <div class="direct-chat-info clearfix">
-                                <span class="direct-chat-name float-right">@item.AspNetUser.UserName</span>
-                                <span class="direct-chat-timestamp float-left">trả lời @item.AspNetUser1.Email</span>
-                            </div>
-                            <img class="direct-chat-img" src="~/Content/image/avatargiangvien.png" alt="Message User Image">
-                            <div class="direct-chat-text ">
-                                @item.TinNhan
-                            </div>
-                        </div>
+                        <a class="w3-button w3-blue w3-padding-large w3-large" href="@Url.Action("KiemTraTrucTuyenJavaScript","SinhVien")">
+                            Kiểm Tra Trực Tuyến Java Script
+                        </a>
                     }
-
                 }
             </div>
         </div>
-        @using (Html.BeginForm("ChonSinhVienChatBox", "HuanLuyenVien"))
-        {
-            @Html.AntiForgeryToken()
-            <!-- /.card-body -->
-            <div class="card-footer w3-light-gray">
-                <div class="input-group">
+    </div>
+    <div class="w3-half" onmouseover="demsoluongtinnhan()">
+        <!-- DIRECT CHAT PRIMARY -->
+        <div class="w3-card-4 card-primary direct-chat direct-chat-primary demo">
+            <!--chat header-->
+            <div class="card-header w3-deep-purple ">
+                <h3 class="card-title" id="demo">Nhắn tin với @dbNguoinhan.HoTen</h3>
+                <div class="card-tools">
+                    <span data-toggle="tooltip" title="3 New Messages" class="badge bg-danger w3-hide " id="soluongtinnhanmoi"></span>
+
+                    @*<button type="button" class="btn btn-tool" data-widget="collapse">
+                            <i class="fa fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-toggle="tooltip" title="Contacts"
+                                data-widget="chat-pane-toggle">
+                            <i class="fa fa-comments"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-widget="remove">
+                            <i class="fa fa-times"></i>
+                        </button>*@
+                </div>
+            </div>
+            <!--chat body-->
+            <div class="card-body w3-light-gray">
+                <!-- Conversations are loaded here -->
+                <div class="direct-chat-messages w3-large" style="height:425px" id="discussion">
+                    @foreach (var item in db.ChatBoxes)
+                    {
+                        if (item.UserID_Gui == idnguoinhan && item.UserID_Nhan == idusername)
+                        {
+                            <!-- LEFT  -->
+                            <div class="direct-chat-msg ">
+                                <div class="direct-chat-info clearfix">
+                                    <span class="direct-chat-timestamp float-right">@item.ThoiGian</span>
+                                </div>
+                                <img class="direct-chat-img" src="~/Content/image/avatar3.png" alt="Message User Image">
+                                <div class="direct-chat-text">
+                                    @item.TinNhan
+                                </div>
+                            </div>
+                        }
+                        if (item.UserID_Gui == idusername && item.UserID_Nhan == idnguoinhan)
+                        {
+                            <!-- RIGHT-->
+                            <div class="direct-chat-msg right">
+                                <div class="direct-chat-info clearfix">
+                                    <span class="direct-chat-timestamp float-left">trả lời @item.AspNetUser1.Email</span>
+                                </div>
+                                <img class="direct-chat-img" src="~/Content/image/avatargiangvien.png" alt="Message User Image">
+                                <div class="direct-chat-text">
+                                    @item.TinNhan
+                                </div>
+                            </div>
+                        }
+
+                    }
+                </div>
+            </div>
+            <!-- gữi tin nhắn -->
+            <div class="card-footer w3-white">
+                <div class="input-group w3-animate-input">
                     <!-- w3-hide -->
-                    <input type="text" name="ThoiGian" value="@time" class="form-control w3-hide">
-                    <input type="text" name="UserID_Gui" value="@idusername" class="form-control w3-hide">
-                    <input type="text" name="UserID_Nhan" value="@idnguoinhan" id="idnguoinhan" class="form-control w3-hide">
+                    <input id="thoigian" type="text" value="@time" class="form-control w3-hide">
+                    <input id="nguoigui" type="hidden" value="@idusername" class="form-control">
+                    <input id="nguoinhan" type="hidden" value="@idnguoinhan" class="form-control">
                     <!--end w3-hide -->
-                    <textarea type="text" name="TinNhan" placeholder="Type Message ..." class="form-control" style="max-width:none" required></textarea>
-                    <span class="input-group-append w3-right" style="">
-                        <button type="submit" class="w3-button w3-blue " id="Send">Send</button>
+                    <textarea id="tinnhan" oninput="batnutsend()" type="submit" name="TinNhan" placeholder="Type Message ..." class="form-control" style="max-width:none" required></textarea>
+                    <span class="input-group-append" style="">
+                        <input type="button" id="sendmessage" value="Send" class="w3-button w3-blue" disabled/>
                     </span>
                 </div>
             </div>
             <!-- /.card-footer-->
-        }
+        </div>
     </div>
 </div>
+
+@section scripts {
+
+    <script>
+        var tinnhancheck;
+        var demtinnhancheck;
+        function batnutsend() {
+            if (document.getElementById("tinnhan").value != "") {
+                document.getElementById("sendmessage").disabled = false;
+                tinnhancheck = document.getElementById("tinnhan").value.toString();
+                demtinnhancheck = tinnhancheck.length;
+            }
+            else {
+                document.getElementById("sendmessage").disabled = true;
+                tinnhancheck = document.getElementById("tinnhan").value;
+                demtinnhancheck = tinnhancheck.length;
+            }  
+        }
+        var input = document.getElementById("tinnhan");
+        input.addEventListener("keyup", function (event) {
+            event.preventDefault();
+            if (event.keyCode === 13 && tinnhancheck != "\n"/* && demtinnhancheck > 5*/) {
+                document.getElementById("sendmessage").click();
+            }
+        });
+
+        var dem = 0;
+        var yourEl = document.getElementById("discussion");
+        yourEl.scrollTop = yourEl.scrollHeight;
+    </script>
+    <script src="~/Scripts/jquery.signalR-2.2.3.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        $(function () {
+            var chat = $.connection.chatHub;
+            chat.client.addNewMessageToPage = function (UserId_Gui, TinNhan, ThoiGian, UserID_Nhan) {
+                //Left
+                //item.UserID_Gui == dbhopdong.IDHuanLuyenVien && item.UserID_Nhan == dbhopdong.IDSinhVien
+                if (UserId_Gui == $('#nguoinhan').val() && UserID_Nhan == $('#nguoigui').val()) {
+                    $('#discussion').append('<div class="direct-chat-msg "><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp float-right">' + ThoiGian + '</span></div><img class="direct-chat-img" src="https://i.imgur.com/gb8LIxC.png" alt="Message User Image"><div class="direct-chat-text">' + htmlEncode(TinNhan)+'</div></div>');
+                    dem++;
+                    document.getElementById("soluongtinnhanmoi").innerHTML = dem.toString();
+                    if (document.getElementById("soluongtinnhanmoi").classList.contains('w3-hide') == true) {
+                        document.getElementById("soluongtinnhanmoi").classList.remove('w3-hide');
+                    }
+                }
+                else if (UserId_Gui == $('#nguoigui').val() && UserID_Nhan == $('#nguoinhan').val()) {
+                    $('#discussion').append('<div class="direct-chat-msg right"><div class="direct-chat-info clearfix"><span class="direct-chat-timestamp float-left">' +ThoiGian + '</span></div><img class="direct-chat-img" src="https://i.imgur.com/mrgzBy2.png" alt="Message User Image" /><div class="direct-chat-text">' + htmlEncode(TinNhan) + '</div></div>');
+                    dem = 0;
+                    document.getElementById("soluongtinnhanmoi").innerHTML = dem.toString();
+                    if (document.getElementById("soluongtinnhanmoi").classList.contains('w3-hide') == false) {
+                        document.getElementById("soluongtinnhanmoi").classList.add('w3-hide');
+                    }
+                }
+                var yourEl = document.getElementById("discussion");
+                yourEl.scrollTop = yourEl.scrollHeight;
+                
+            };
+            $('#tinnhan').focus();
+            $.connection.hub.start().done(function () {
+                $('#sendmessage').click(function () {
+                    chat.server.send($('#nguoigui').val(), $('#tinnhan').val(), $('#thoigian').val(), $('#nguoinhan').val());
+                    dem = 0;
+                    document.getElementById("soluongtinnhanmoi").innerHTML = dem.toString();
+                    $('#tinnhan').val('').focus();
+                    $('#discussion').scrollHeight;
+                    document.getElementById("sendmessage").disabled = true;
+                });
+            });
+        });
+        function htmlEncode(value) {
+            var encodedValue = $('<div />').text(value).html();
+            return encodedValue;
+        }
+        function demsoluongtinnhan() {
+            if (document.getElementById("soluongtinnhanmoi").classList.contains('w3-hide') == false) {
+                document.getElementById("soluongtinnhanmoi").classList.add('w3-hide');
+                dem = 0;
+            }
+        }
+        
+    </script>
+}

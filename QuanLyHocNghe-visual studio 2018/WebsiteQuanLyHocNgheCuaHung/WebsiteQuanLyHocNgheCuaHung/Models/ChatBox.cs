@@ -11,11 +11,12 @@
 
 namespace WebsiteQuanLyHocNgheCuaHung.Models
 {
-
-using System;
+    using Microsoft.AspNet.SignalR;
+    using System.Web;
+    using System;
     using System.Collections.Generic;
     
-public partial class ChatBox
+public partial class ChatBox 
 {
 
     public int Id { get; set; }
@@ -33,6 +34,8 @@ public partial class ChatBox
     public virtual AspNetUser AspNetUser { get; set; }
 
     public virtual AspNetUser AspNetUser1 { get; set; }
+
+    
 
 }
 
